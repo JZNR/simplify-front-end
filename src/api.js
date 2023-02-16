@@ -1,36 +1,36 @@
 import axios from "axios";
-const BASE_URL = `${process.env.REACT_APP_PROJECTS_API}/api`;
+const BASE_URL = `${process.env.REACT_APP_PROJECTS_API}`;
 
 export const getProjects = () => {
-    return axios.get(`${BASE_URL}/projects`)
-}
+  return axios.get(`${BASE_URL}/projects`);
+};
 
 export const getProject = (id) => {
-    return axios.get(`${BASE_URL}/project/${id}`)
-}
+  return axios.get(`${BASE_URL}/project/${id}`);
+};
 
 export const deleteProject = (id) => {
-    return axios.delete(`${BASE_URL}/project/${id}`)
-}
+  return axios.delete(`${BASE_URL}/project/${id}`);
+};
 
 export const createProject = (project) => {
-    return axios.post(`${BASE_URL}/projects`, project)
-}
+  return axios.post(`${BASE_URL}/projects`, project);
+};
 
 export const uploadImage = (uploadData) => {
-    return axios.post(`${BASE_URL}/upload`, uploadData)
-}
+  return axios.post(`${BASE_URL}/upload`, uploadData);
+};
 
 export const login = (user) => {
-    return axios.post(`${BASE_URL}/login`, user)
-}
+  return axios.post(`${BASE_URL}/login`, user);
+};
 
 export const signup = (user) => {
-    return axios.post(`${BASE_URL}/signup`, user)
-}
+  return axios.post(`${BASE_URL}/signup`, user);
+};
 
 export const verify = (token) => {
-    return axios.get(`${BASE_URL}/verify`, {
-        headers: { Authorization: `Bearer ${token}`}
-    })
-}
+  return axios.get(`${BASE_URL}/verify`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
