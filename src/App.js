@@ -6,9 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { useState, useContext } from "react";
 import { UserContext } from "./context/user.context";
-import CustomCalendar from "./components/CustomCalendar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import CalendarPage from "./pages/CalendarPage";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
@@ -18,7 +18,7 @@ function App() {
       <ToastContainer />
       {/* {loggedUser && <Navbar />} */}
       <Routes>
-        <Route path={"/"} element={<CustomCalendar />} />
+        <Route path={"/"} element={<CalendarPage />} />
         <Route path={"/signup"} element={<Signup />} />
         <Route path={"/login"} element={<Login />} />
       </Routes>
