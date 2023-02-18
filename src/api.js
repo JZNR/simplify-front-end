@@ -1,9 +1,5 @@
 import axios from "axios";
-<<<<<<< HEAD
-const BASE_URL = `${process.env.REACT_APP_PROJECTS_API}/events`;
-=======
 const BASE_URL = `${process.env.REACT_APP_PROJECTS_API}`;
->>>>>>> 89032dcc3c2cfde61627e20453dd78169f2cbb22
 
 export const getProjects = () => {
   return axios.get(`${BASE_URL}/projects`);
