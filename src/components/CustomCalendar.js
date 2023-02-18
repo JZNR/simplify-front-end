@@ -2,15 +2,20 @@ import { React, useState } from 'react'
 import Calendar from 'react-calendar'
 import { Navigate } from 'react-router-dom'
 
-function Calendar( { children } ) {
+function CustomCalendar() {
 
     const [date, setDate] = useState(new Date());
 
     return (
          <div>
-            <Calendar onChange={setDate} value={date} maxDate={new Date(2024, 0, 1)} width={100%}></Calendar>
+            <Calendar 
+            onChange={setDate} 
+            value={date} 
+            view={'year'}
+            selectRange={true}
+            />
          </div>
   )
 }
 
-export default Calendar;
+export default CustomCalendar;
