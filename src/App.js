@@ -9,7 +9,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "./context/user.context";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import CustomCalendar from "./components/CustomCalendar";
+import { UserContext } from "./context/user.context";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
