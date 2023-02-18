@@ -1,21 +1,24 @@
-import { React, useState } from 'react'
-import Calendar from 'react-calendar'
-import { Navigate } from 'react-router-dom'
+import React from 'react'
+import FullCalendar from '@fullcalendar/react' // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 
-function CustomCalendar() {
-
-    const [date, setDate] = useState(new Date());
-
+export default class CustomCalendar extends React.Component {
+  handleDateClick = (arg) => { // bind with an arrow function
+    alert(arg.dateStr)
+  }
+  render() {
     return (
-         <div>
-            <Calendar 
-            onChange={setDate} 
-            value={date} 
-            view={'year'}
-            selectRange={true}
-            />
-         </div>
-  )
-}
-
-export default CustomCalendar;
+      <FullCalendar
+        plugins={[ dayGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        dateClick={this.handleDateClick}
+        weekends={false}
+        events={[
+          { title: 'event 1', date: '2023-02-20' },
+          { title: 'event 2', date: '2023-02-20' }
+        ]}
+      />
+    )
+  }
+};

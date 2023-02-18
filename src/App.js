@@ -9,6 +9,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "./context/user.context";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import CustomCalendar from "./components/CustomCalendar";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
@@ -19,7 +20,7 @@ function App() {
       {/* {loggedUser && <Navbar />} */}
       <Navbar></Navbar>
       <Routes>
-        <Route path={"/"} element={<Calendar />} />
+        <Route path={"/"} element={<CustomCalendar />} />
         <Route path={"/signup"} element={<Signup />} />
         <Route path={"/login"} element={<Login />} />
       </Routes>

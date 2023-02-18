@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProviderWrapper } from './context/user.context';
-import 'react-calendar/dist/Calendar.css';
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
