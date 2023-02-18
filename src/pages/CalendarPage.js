@@ -5,15 +5,20 @@ import AddEventModal from ".././components/AddEventModal";
 
 function CalendarPage() {
   const [modalShow, setModalShow] = useState(false);
-
-  const handleDateClick = (args) => {
+  const [eventDate, seteventDate] = useState();
+  const handleDateClick = (arg) => {
     setModalShow(true);
+    seteventDate(arg.dateStr);
   };
   return (
     <>
       <CustomCalendar handleDateClick={handleDateClick} />
       {modalShow && (
-        <AddEventModal show={modalShow} onHide={() => setModalShow(false)} />
+        <AddEventModal
+          eventDate={eventDate}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
       )}
     </>
   );

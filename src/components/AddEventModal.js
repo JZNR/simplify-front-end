@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 function AddEventModal(props) {
   return (
@@ -10,19 +11,38 @@ function AddEventModal(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Add Event</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Add Event </Modal.Title>
+        {props.eventDate}
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicTitle">
+            <Form.Label>Title</Form.Label>
+            <Form.Control type="text" placeholder="Enter title" />
+          </Form.Group>
+          <Form.Select>
+            <option>event</option>
+            <option>task</option>
+            <option>meeting</option>
+            <option>reminder</option>
+          </Form.Select>
+
+          <Form.Group className="mb-3">
+            <Form.Check type="checkbox" label="All day" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control type="text" placeholder="Enter description" />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
       </Modal.Body>
-      <Modal.Footer>
+      {/*<Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
+      </Modal.Footer>*/}
     </Modal>
   );
 }
