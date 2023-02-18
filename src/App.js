@@ -4,12 +4,11 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { Calendar } from "react-calendar";
 import { useState, useContext } from "react";
 import { UserContext } from "./context/user.context";
+import CustomCalendar from "./components/CustomCalendar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import { UserContext } from "./context/user.context";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
@@ -18,7 +17,6 @@ function App() {
     <div className="App">
       <ToastContainer />
       {/* {loggedUser && <Navbar />} */}
-      <Navbar></Navbar>
       <Routes>
         <Route path={"/"} element={<CustomCalendar />} />
         <Route path={"/signup"} element={<Signup />} />
