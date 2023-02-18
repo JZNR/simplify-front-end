@@ -6,10 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { Calendar } from "react-calendar";
 import { useState, useContext } from "react";
-<<<<<<< HEAD
-=======
 import { UserContext } from "./context/user.context";
->>>>>>> refs/remotes/origin/main
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { UserContext } from "./context/user.context";
