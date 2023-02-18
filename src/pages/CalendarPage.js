@@ -12,7 +12,9 @@ function CalendarPage() {
   return (
     <>
       <CustomCalendar handleDateClick={handleDateClick} />
-      {modalShow && <AddEventModal show={modalShow} />}
+      {modalShow && (
+        <AddEventModal show={modalShow} onHide={() => setModalShow(false)} />
+      )}
     </>
   );
 }
