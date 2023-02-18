@@ -9,9 +9,9 @@ import { ToastContainer } from "react-toastify";
 import IsPrivate from "./components/IsPrivate";
 import { Calendar } from "react-calendar";
 import { useState, useContext } from "react";
-import { UserContext } from "../context/user.context";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { UserContext } from "./context/user.context";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
