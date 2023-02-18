@@ -5,8 +5,8 @@ export const getEvents = () => {
   return axios.get(`${BASE_URL}/event`);
 };
 
-export const getProject = (id) => {
-  return axios.get(`${BASE_URL}/project/${id}`);
+export const postEvent = () => {
+  return axios.post(`${BASE_URL}/event`);
 };
 
 export const deleteProject = (id) => {
