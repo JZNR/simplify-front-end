@@ -2,11 +2,15 @@ import axios from "axios";
 const BASE_URL = `${process.env.REACT_APP_PROJECTS_API}`;
 
 export const getEvents = () => {
-  return axios.get(`${BASE_URL}/event`);
+  return axios.get(`${BASE_URL}/event`,  {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
 };
 
 export const createEvent = (event) => {
-  return axios.post(`${BASE_URL}/event`, event);
+  return axios.post(`${BASE_URL}/event`, event, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
 };
 
 export const deleteProject = (id) => {
