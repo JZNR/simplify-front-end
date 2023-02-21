@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { postEvent } from "../api";
+import { createEvent } from "../api";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -9,9 +9,9 @@ import { useState } from "react";
 function AddEventModal(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("event");
   const [date, setDate] = useState(props.eventDate);
-  const [allDay, setAllDay] = useState("");
+  const [allDay, setAllDay] = useState(false);
   const [description, setDescription] = useState("");
 
   function handleTitleChange(event) {
@@ -31,12 +31,12 @@ function AddEventModal(props) {
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await postEvent({ title, type, date });
-      console.log(postEvent({ title, type, date, allDay, description }));
+      await createEvent({ title, type, date });
+      console.log(({ title, type, date}));
       toast.success("Event created ");
       navigate("/");
     } catch (error) {
-      toast.error("Whatever occured here", error);
+      toast.error("Error occured", error);
     }
   }
 
