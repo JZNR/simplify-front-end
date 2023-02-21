@@ -18,6 +18,13 @@ function CustomCalendar(props) {
         editable
         eventDrop={(e) => eventDrop(e)}
         eventClick={(e) => props.editEvent(e)}
+        buttonText={{
+          today: "Today",
+          month: "Month",
+          week: "Week",
+          day: "Day",
+        }}
+        selectable={true}
         headerToolbar={{
           left: "prev,next today",
           center: "title",
