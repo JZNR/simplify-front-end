@@ -2,7 +2,7 @@ import axios from "axios";
 const BASE_URL = `${process.env.REACT_APP_PROJECTS_API}`;
 
 export const getEvents = () => {
-  return axios.get(`${BASE_URL}/event`,  {
+  return axios.get(`${BASE_URL}/event`, {
     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
   });
 };
@@ -13,8 +13,8 @@ export const createEvent = (event) => {
   });
 };
 
-export const deleteProject = (id) => {
-  return axios.delete(`${BASE_URL}/project/${id}`);
+export const deleteEvent = (id) => {
+  return axios.delete(`${BASE_URL}/event/${id}`);
 };
 
 export const createProject = (project) => {
