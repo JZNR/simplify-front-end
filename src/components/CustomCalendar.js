@@ -11,6 +11,14 @@ function CustomCalendar(props) {
         plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
         initialView="dayGridMonth"
         dateClick={props.handleDateClick}
+        buttonText={
+          {
+            today:    'Today',
+            month:    'Month',
+            week:     'Week',
+            day:      'Day',
+          }
+        }
         selectable={true}
         weekends={true}
         editable={true}
