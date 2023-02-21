@@ -5,6 +5,7 @@ import { createEvent } from "../api";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { getEvents } from "../api";
 
 function AddEventModal(props) {
   const navigate = useNavigate();
@@ -32,9 +33,12 @@ function AddEventModal(props) {
     event.preventDefault();
     try {
       await createEvent({ title, type, date });
-      console.log(({ title, type, date}));
       toast.success("Event created ");
-      navigate("/");
+      props.onHide(); //hide modal
+
+      //call getEvents to update calendar after adding new event
+      const response = await getEvents();
+      props.setEvents(response.data);
     } catch (error) {
       toast.error("Error occured", error);
     }

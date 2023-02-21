@@ -20,19 +20,13 @@ function App() {
     <div className="App">
       <ToastContainer />
       <Container>
-        {/*<Row>
-          <Col>*/}
+        {loggedUser && <Navbar />}
 
-        {/*</Col>*/}
-        {/* {loggedUser && <Navbar />} */}
-        {/*<Col>*/}
         <Routes>
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/"} element={<CalendarPage />} />
+          <Route path={"/"} element={<Login />} />
+          <Route path={"/calendar"} element={<CalendarPage />} />
           <Route path={"/signup"} element={<Signup />} />
         </Routes>
-        {/*</Col>
-        </Row>*/}
       </Container>
     </div>
   );

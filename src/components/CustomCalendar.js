@@ -3,21 +3,8 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { getEvents } from "../api";
-import { useState } from "react";
 
 function CustomCalendar(props) {
-  const [events, setEvents] = useState("");
-
-  useEffect(() => {
-    async function getAllEvents() {
-      const response = await getEvents();
-      setEvents(response.data);
-    };
-    console.log(events)
-    getAllEvents();
-  }, []);
-
   return (
     <>
       <FullCalendar
@@ -31,7 +18,7 @@ function CustomCalendar(props) {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
-        events={events}
+        events={props.events}
       />
     </>
   );
