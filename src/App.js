@@ -21,10 +21,8 @@ function App() {
       <ToastContainer />
       <Container>
         <Row>
-          <Col xs={2}>
-            <Navbar />
-          </Col>
-          {/* {loggedUser && <Navbar />} */}
+          <Col xs={2}>{/* {loggedUser && <Navbar />} */}</Col>
+
           <Col xs={10}>
             <Routes>
               <Route path={"/login"} element={<Login />} />
