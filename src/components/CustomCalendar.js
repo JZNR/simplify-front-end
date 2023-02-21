@@ -26,6 +26,7 @@ function CustomCalendar(props) {
         dateClick={props.handleDateClick}
         selectable={true}
         weekends={true}
+        editable={true}
         headerToolbar={{
           left: "prev,next today",
           center: "title",
