@@ -3,10 +3,14 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import timeGridPlugin from "@fullcalendar/timegrid";
+import { updateEvent } from "../api";
 
 function CustomCalendar(props) {
   function eventDrop(e) {
-    console.log("eventdrop", e);
+    console.log(e)
+    const updatedEventTime = e.event._instance.range;
+    const updatedEventId = e.event._def.extendedProps._id
+    updateEvent(updatedEventTime, updatedEventId)
   }
   return (
     <>

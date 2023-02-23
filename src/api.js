@@ -13,13 +13,16 @@ export const createEvent = (event) => {
   });
 };
 
+export const updateEvent = (eventTime, eventID) => {
+  return axios.post(`${BASE_URL}/event/update`, { eventTime, eventID}, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}`},
+  });
+};
+
 export const deleteEvent = (id) => {
   return axios.delete(`${BASE_URL}/event/${id}`);
 };
 
-export const createProject = (project) => {
-  return axios.post(`${BASE_URL}/projects`, project);
-};
 
 export const uploadImage = (uploadData) => {
   return axios.post(`${BASE_URL}/upload`, uploadData);
