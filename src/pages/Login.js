@@ -48,7 +48,7 @@ function Login() {
         <Col className="login-form">
           <div className="login-form-text">
             {" "}
-            <h3>Sign in</h3>
+            <h3>Log in</h3>
             <p>
               If you don’t have an account register You can{" "}
               <Link to={"/signup"}>Register here !</Link>{" "}

@@ -44,6 +44,7 @@ function CalendarPage() {
           show={modalShow}
           onHide={() => setModalShow(false)}
           setEvents={setEvents}
+          editEvent={editEvent}
         />
       )}
     </>
