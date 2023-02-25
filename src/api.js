@@ -7,6 +7,12 @@ export const getEvents = () => {
   });
 };
 
+export const getOneEvent = (eventID) => {
+  return axios.get(`${BASE_URL}/event/${eventID}`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
+
 export const createEvent = (event) => {
   return axios.post(`${BASE_URL}/event`, event, {
     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
