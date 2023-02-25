@@ -16,6 +16,7 @@ function CustomCalendar(props) {
         editable
         eventDrop={(e) => props.eventDrop(e)}
         eventClick={(e) => props.editEvent(e)}
+        eventResize={(e) => props.eventDrop(e)}
         buttonText={{
           today: "Today",
           month: "Month",
