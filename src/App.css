@@ -83,3 +83,16 @@
   border-radius: 10px;
   border: none;
 }
+
+/*calendar styles*/
+.fc .fc-daygrid-day-number {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.fc .fc-col-header-cell-cushion {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
