@@ -23,8 +23,8 @@ export const updateEvent = (eventTime, eventID) => {
   );
 };
 
-export const deleteEvent = (event) => {
-  return axios.delete(`${BASE_URL}/event/delete`, event);
+export const deleteEvent = (eventID) => {
+  return axios.post(`${BASE_URL}/event/delete`, {eventID});
 };
 
 export const uploadImage = (uploadData) => {
