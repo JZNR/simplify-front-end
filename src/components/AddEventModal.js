@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getEvents } from "../api";
+import TimePicker from 'react-time-picker';
 
 function AddEventModal(props) {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ function AddEventModal(props) {
   const [date, setDate] = useState(props.eventDate);
   const [allDay, setAllDay] = useState(false);
   const [description, setDescription] = useState("");
+  const [startTime, setStartTime] = useState("10:00");
+  const [endTime, setEndTime] = useState("12:00");
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -28,11 +31,21 @@ function AddEventModal(props) {
   function handleDescriptionChange(event) {
     setDescription(event.target.value);
   }
+  
+  function handleStartTimeChange(time) {
+    console.log(time)
+    setStartTime(time);
+  }
+
+  function handleEndTimeChange(time) {
+    console.log(time)
+    setEndTime(time);
+  }
 
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await createEvent({ title, type, date, allDay });
+      await createEvent({ title, type, date, allDay, startTime, endTime });
       toast.success("Event created ");
       props.onHide(); //hide modal
 
@@ -89,6 +102,16 @@ function AddEventModal(props) {
               onChange={handleDescriptionChange}
             />
           </Form.Group>
+
+          <TimePicker 
+          onChange={handleStartTimeChange} 
+          disableClock={true}
+          value={startTime} />
+
+          <TimePicker 
+          onChange={handleEndTimeChange} 
+          disableClock={true}
+          value={endTime} />
 
           <Button variant="primary" type="submit">
             Submit
