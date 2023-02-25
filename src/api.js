@@ -19,8 +19,10 @@ export const updateEvent = (eventTime, eventID) => {
   });
 };
 
-export const deleteEvent = (id) => {
-  return axios.delete(`${BASE_URL}/event/${id}`);
+export const deleteEvent = (event) => {
+  return axios.delete(`${BASE_URL}/event/delete`, event, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}`},
+  } );
 };
 
 
