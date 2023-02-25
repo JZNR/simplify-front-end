@@ -6,12 +6,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { updateEvent } from "../api";
 
 function CustomCalendar(props) {
-  function eventDrop(e) {
-    console.log(e)
-    const updatedEventTime = e.event._instance.range;
-    const updatedEventId = e.event._def.extendedProps._id
-    updateEvent(updatedEventTime, updatedEventId)
-  }
   return (
     <>
       <FullCalendar
@@ -20,7 +14,7 @@ function CustomCalendar(props) {
         dateClick={props.handleDateClick}
         weekends={true}
         editable
-        eventDrop={(e) => eventDrop(e)}
+        eventDrop={(e) => props.eventDrop(e)}
         eventClick={(e) => props.editEvent(e)}
         buttonText={{
           today: "Today",

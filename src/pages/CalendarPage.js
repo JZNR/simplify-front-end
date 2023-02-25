@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import CustomCalendar from ".././components/CustomCalendar";
 import { useState } from "react";
 import AddEventModal from ".././components/AddEventModal";
+import { getEvents, deleteEvent, updateEvent } from "../api";
 import EditEventModal from ".././components/EditEventModal";
-import { getEvents, deleteEvent } from "../api";
 
 function CalendarPage() {
   const [modalShow, setModalShow] = useState(false);
@@ -42,12 +42,20 @@ function CalendarPage() {
     getAllEvents();
   }, []);
 
+  function eventDrop(e) {
+    console.log(e)
+    const updatedEventTime = e.event._instance.range;
+    const updatedEventId = e.event._def.extendedProps._id
+    updateEvent(updatedEventTime, updatedEventId)
+  }
+
   return (
     <>
       <CustomCalendar
         handleDateClick={handleDateClick}
         events={events}
         editEvent={editEvent}
+        eventDrop={eventDrop}
       />
       {modalShow && (
         <AddEventModal
