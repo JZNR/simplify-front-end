@@ -23,11 +23,11 @@ function CalendarPage() {
   };
 
   function handleDeleteEvent() {
-    const deleteEventId = editEventInfo.extendedProps._id;
-    console.log("delete event id", deleteEventId);
-    deleteEvent(deleteEventId);
-    //setModalEditShow(false);
-    //getAllEvents();
+    const eventID = editEventInfo.extendedProps._id;
+    console.log("delete event id", eventID);
+    deleteEvent(eventID);
+    setModalEditShow(false);
+    getAllEvents();
   }
 
   function editEvent(e) {
