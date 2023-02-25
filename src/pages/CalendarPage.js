@@ -8,9 +8,10 @@ import { getEvents, deleteEvent } from "../api";
 function CalendarPage() {
   const [modalShow, setModalShow] = useState(false);
   const [modalEditShow, setModalEditShow] = useState(false);
-  const [eventDate, seteventDate] = useState();
+  const [eventDate, setEventDate] = useState();
   const [events, setEvents] = useState("");
   const [editEventInfo, setEditEventInfo] = useState("");
+
   async function getAllEvents() {
     const response = await getEvents();
     setEvents(response.data);
@@ -18,20 +19,18 @@ function CalendarPage() {
 
   const handleDateClick = (arg) => {
     setModalShow(true);
-    seteventDate(arg.dateStr);
+    setEventDate(arg.dateStr);
   };
 
-  function handledeleteEvent(e) {
-    console.log("delete event", e.event._def.extendedProps._id);
-    const eventId = e.event._def.extendedProps._id;
-    deleteEvent(eventId);
-    setModalEditShow(false);
-
-    getAllEvents();
+  function handleDeleteEvent() {
+    const deleteEventId = editEventInfo.extendedProps._id;
+    console.log("delete event id", deleteEventId);
+    deleteEvent(deleteEventId);
+    //setModalEditShow(false);
+    //getAllEvents();
   }
 
   function editEvent(e) {
-    console.log("event click", e.event._def.extendedProps._id);
     setModalEditShow(true);
     getAllEvents();
     setEditEventInfo(e.event._def);
@@ -65,7 +64,7 @@ function CalendarPage() {
           onHide={() => setModalEditShow(false)}
           setEvents={setEvents}
           editEvent={editEvent}
-          handledeleteEvent={handledeleteEvent}
+          handleDeleteEvent={handleDeleteEvent}
           editEventInfo={editEventInfo}
         />
       )}

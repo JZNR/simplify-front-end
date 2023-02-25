@@ -14,17 +14,18 @@ export const createEvent = (event) => {
 };
 
 export const updateEvent = (eventTime, eventID) => {
-  return axios.post(`${BASE_URL}/event/update`, { eventTime, eventID}, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}`},
-  });
+  return axios.post(
+    `${BASE_URL}/event/update`,
+    { eventTime, eventID },
+    {
+      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+    }
+  );
 };
 
 export const deleteEvent = (event) => {
-  return axios.delete(`${BASE_URL}/event/delete`, event, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}`},
-  } );
+  return axios.delete(`${BASE_URL}/event/delete`, event);
 };
-
 
 export const uploadImage = (uploadData) => {
   return axios.post(`${BASE_URL}/upload`, uploadData);

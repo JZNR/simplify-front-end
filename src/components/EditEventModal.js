@@ -100,7 +100,7 @@ function EditEventModal(props) {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button onClick={props.handledeleteEvent}>Delete Event</Button>
+        <Button onClick={props.handleDeleteEvent}>Delete Event</Button>
       </Modal.Footer>
     </Modal>
   );
