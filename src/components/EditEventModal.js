@@ -5,9 +5,9 @@ import { createEvent } from "../api";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { getEvents } from "../api";
+import { getEvents, editEvent } from "../api";
 
-function AddEventModal(props) {
+function EditEventModal(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("event");
@@ -32,8 +32,8 @@ function AddEventModal(props) {
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await createEvent({ title, type, date });
-      toast.success("Event created ");
+      await createEvent({ title, type, date, allDay, description });
+      toast.success("Event updated ");
       props.onHide(); //hide modal
 
       //call getEvents to update calendar after adding new event
@@ -65,6 +65,7 @@ function AddEventModal(props) {
               type="text"
               placeholder="Enter title"
               onChange={handleTitleChange}
+              value={props.editEventInfo.title}
             />
           </Form.Group>
           <Form.Select onChange={handleTypeChange}>
@@ -76,6 +77,7 @@ function AddEventModal(props) {
 
           <Form.Group className="mb-3">
             <Form.Check
+              defaultChecked={props.editEventInfo.allDay}
               type="checkbox"
               label="All day"
               onChange={handleAllDayChange}
@@ -87,6 +89,7 @@ function AddEventModal(props) {
               type="text"
               placeholder="Enter description"
               onChange={handleDescriptionChange}
+              value={props.editEventInfo.title}
             />
           </Form.Group>
 
@@ -97,10 +100,10 @@ function AddEventModal(props) {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button onClick={props.editEvent}>Delete Event</Button>
+        <Button onClick={props.handledeleteEvent}>Delete Event</Button>
       </Modal.Footer>
     </Modal>
   );
 }
 
-export default AddEventModal;
+export default EditEventModal;
