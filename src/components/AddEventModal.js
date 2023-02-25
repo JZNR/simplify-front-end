@@ -23,7 +23,7 @@ function AddEventModal(props) {
   }
 
   function handleAllDayChange(event) {
-    setAllDay(event.target.value);
+    setAllDay(!allDay);
   }
   function handleDescriptionChange(event) {
     setDescription(event.target.value);
@@ -32,7 +32,7 @@ function AddEventModal(props) {
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await createEvent({ title, type, date });
+      await createEvent({ title, type, date, allDay });
       toast.success("Event created ");
       props.onHide(); //hide modal
 
@@ -75,6 +75,8 @@ function AddEventModal(props) {
           <Form.Group className="mb-3">
             <Form.Check
               type="checkbox"
+              checked={allDay}
+              value={allDay}
               label="All day"
               onChange={handleAllDayChange}
             />
