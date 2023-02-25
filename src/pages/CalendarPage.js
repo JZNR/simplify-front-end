@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CustomCalendar from ".././components/CustomCalendar";
 import { useState } from "react";
 import AddEventModal from ".././components/AddEventModal";
-import { getEvents, deleteEvent, updateEvent } from "../api";
+import { getEvents, deleteEvent, updateEvent, getOneEvent } from "../api";
 import EditEventModal from ".././components/EditEventModal";
 
 function CalendarPage() {
@@ -30,10 +30,13 @@ function CalendarPage() {
     getAllEvents();
   }
 
-  function editEvent(e) {
+  async function editEvent(e) {
     setModalEditShow(true);
-    getAllEvents();
-    setEditEventInfo(e.event._def);
+    const eventId = e.event._def.extendedProps._id;
+
+    const response = await getOneEvent(eventId);
+    setEditEventInfo(response.data);
+    getOneEvent(e.event._def.extendedProps._id);
   }
 
   useEffect(() => {
@@ -43,10 +46,10 @@ function CalendarPage() {
   }, []);
 
   function eventDrop(e) {
-    console.log(e)
+    console.log(e);
     const updatedEventTime = e.event._instance.range;
-    const updatedEventId = e.event._def.extendedProps._id
-    updateEvent(updatedEventTime, updatedEventId)
+    const updatedEventId = e.event._def.extendedProps._id;
+    updateEvent(updatedEventTime, updatedEventId);
   }
 
   return (
