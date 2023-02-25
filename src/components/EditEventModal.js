@@ -19,7 +19,7 @@ function AddEventModal(props) {
     setTitle(event.target.value);
   }
   function handleTypeChange(event) {
-    setType(event.target.value);
+    setType(event.target.value.toLowerCase());
   }
 
   function handleAllDayChange(event) {
@@ -68,10 +68,10 @@ function AddEventModal(props) {
             />
           </Form.Group>
           <Form.Select onChange={handleTypeChange}>
-            <option>event</option>
-            <option>task</option>
-            <option>meeting</option>
-            <option>reminder</option>
+            <option>Event</option>
+            <option>Task</option>
+            <option>Meeting</option>
+            <option>Reminder</option>
           </Form.Select>
 
           <Form.Group className="mb-3">

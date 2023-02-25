@@ -20,11 +20,12 @@ function App() {
     <div className="App">
       <ToastContainer />
       <Container>
+      
         {loggedUser && <Navbar />}
 
         <Routes>
           <Route path={"/"} element={<Login />} />
-          <Route path={"/calendar"} element={<CalendarPage />} />
+          <Route path={"/calendar"} element={loggedUser && <CalendarPage />} />
           <Route path={"/signup"} element={<Signup />} />
         </Routes>
       </Container>
