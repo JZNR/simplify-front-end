@@ -6,14 +6,31 @@ import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getEvents, editEvent } from "../api";
+import TimePicker from 'react-time-picker';
+
 
 function EditEventModal(props) {
-  const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [type, setType] = useState("event");
-  const [date, setDate] = useState(props.eventDate);
-  const [allDay, setAllDay] = useState(false);
-  const [description, setDescription] = useState("");
+
+  // Regex for the current Time of the Event being Edited. 
+
+    const eventStartDate = props.editEventInfo.start;
+    const eventEndDate = props.editEventInfo.end;
+    const timeRegex = /T(\d{2}:\d{2}:\d{2})/;
+    
+    const startDateMatch = eventStartDate.match(timeRegex);
+    const endDateMatch = eventEndDate.match(timeRegex);
+
+    const currentStartTime = startDateMatch[1];
+    const currentEndTime = endDateMatch[1];
+
+    const navigate = useNavigate();
+    const [title, setTitle] = useState("");
+    const [type, setType] = useState("event");
+    const [date, setDate] = useState(props.eventDate);
+    const [allDay, setAllDay] = useState(false);
+    const [description, setDescription] = useState("");
+    const [startTime, setStartTime] = useState(currentStartTime);
+    const [endTime, setEndTime] = useState(currentEndTime);
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -23,10 +40,21 @@ function EditEventModal(props) {
   }
 
   function handleAllDayChange(event) {
-    setAllDay(event.target.value);
+    setAllDay(!allDay);
   }
+
   function handleDescriptionChange(event) {
     setDescription(event.target.value);
+  }
+
+  function handleStartTimeChange(time) {
+    console.log(time)
+    setStartTime(time);
+  }
+
+  function handleEndTimeChange(time) {
+    console.log(time)
+    setEndTime(time);
   }
 
   async function handleSubmitForm(event) {
@@ -83,15 +111,26 @@ function EditEventModal(props) {
               onChange={handleAllDayChange}
             />
           </Form.Group>
+
           <Form.Group className="mb-3" controlId="formBasicDescription">
             <Form.Label>Description</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter description"
               onChange={handleDescriptionChange}
-              value={props.editEventInfo.title}
+              value={props.editEventInfo.description}
             />
           </Form.Group>
+
+          <TimePicker 
+          onChange={handleStartTimeChange} 
+          disableClock={true}
+          value={startTime} />
+
+          <TimePicker 
+          onChange={handleEndTimeChange} 
+          disableClock={true}
+          value={endTime} />
 
           <Button variant="primary" type="submit">
             Submit

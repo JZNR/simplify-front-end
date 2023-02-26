@@ -45,7 +45,7 @@ function AddEventModal(props) {
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await createEvent({ title, type, date, allDay, startTime, endTime });
+      await createEvent({ title, type, date, allDay, description, startTime, endTime });
       toast.success("Event created ");
       props.onHide(); //hide modal
 

@@ -27,6 +27,7 @@ function CalendarPage() {
     const eventId = e.event._def.extendedProps._id;
     
     const response = await getOneEvent(eventId);
+    console.log(response.data)
     setEditEventInfo(response.data);
     getOneEvent(e.event._def.extendedProps._id);
   }
