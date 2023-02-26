@@ -7,6 +7,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getEvents } from "../api";
 import TimePicker from 'react-time-picker';
+import { GithubPicker } from 'react-color';
+
 
 function AddEventModal(props) {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ function AddEventModal(props) {
   const [description, setDescription] = useState("");
   const [startTime, setStartTime] = useState("10:00");
   const [endTime, setEndTime] = useState("12:00");
+  const [color, setColor] = useState("#ff000")
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -41,11 +44,14 @@ function AddEventModal(props) {
     console.log(time)
     setEndTime(time);
   }
+  function handleChangeColor(color) {
+    setColor(color.hex)
+  }
 
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await createEvent({ title, type, date, allDay, description, startTime, endTime });
+      await createEvent({ title, type, date, allDay, description, startTime, endTime, color});
       toast.success("Event created ");
       props.onHide(); //hide modal
 
@@ -112,6 +118,20 @@ function AddEventModal(props) {
           onChange={handleEndTimeChange} 
           disableClock={true}
           value={endTime} />
+
+        <Form.Group className="mb-3" controlId="formBasicDescription">
+            <Form.Label>Color</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="#000"
+              value={color}
+            />
+          </Form.Group>
+
+          <GithubPicker
+           color={ color }
+           onChangeComplete={ handleChangeColor }
+          />
 
           <Button variant="primary" type="submit">
             Submit
