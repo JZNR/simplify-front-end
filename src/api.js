@@ -19,10 +19,23 @@ export const createEvent = (event) => {
   });
 };
 
+// For drag & Drop
 export const updateEvent = (eventTime, eventID) => {
   return axios.post(
     `${BASE_URL}/event/update`,
     { eventTime, eventID },
+    {
+      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+    }
+  );
+};
+
+// For more detailed editing
+
+export const editEvent = (event) => {
+  return axios.post(
+    `${BASE_URL}/event/edit`,
+    event,
     {
       headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
     }

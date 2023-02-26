@@ -13,24 +13,24 @@ function EditEventModal(props) {
 
   // Regex for the current Time of the Event being Edited. 
 
-    const eventStartDate = props.editEventInfo.start;
-    const eventEndDate = props.editEventInfo.end;
-    const timeRegex = /T(\d{2}:\d{2}:\d{2})/;
+    // const eventStartDate = props.editEventInfo.start;
+    // const eventEndDate = props.editEventInfo.end;
+    // const timeRegex = /T(\d{2}:\d{2}:\d{2})/;
     
-    const startDateMatch = eventStartDate.match(timeRegex);
-    const endDateMatch = eventEndDate.match(timeRegex);
+    // const startDateMatch = eventStartDate.match(timeRegex);
+    // const endDateMatch = eventEndDate.match(timeRegex);
 
-    const currentStartTime = startDateMatch[1];
-    const currentEndTime = endDateMatch[1];
+    // const currentStartTime = startDateMatch[1];
+    // const currentEndTime = endDateMatch[1];
 
     const navigate = useNavigate();
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState(props.editEventInfo.title);
     const [type, setType] = useState("event");
     const [date, setDate] = useState(props.eventDate);
     const [allDay, setAllDay] = useState(false);
-    const [description, setDescription] = useState("");
-    const [startTime, setStartTime] = useState(currentStartTime);
-    const [endTime, setEndTime] = useState(currentEndTime);
+    const [description, setDescription] = useState(props.editEventInfo.description);
+    // const [startTime, setStartTime] = useState(currentStartTime);
+    // const [endTime, setEndTime] = useState(currentStartTime);
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -39,7 +39,7 @@ function EditEventModal(props) {
     setType(event.target.value.toLowerCase());
   }
 
-  function handleAllDayChange(event) {
+  function handleAllDayChange() {
     setAllDay(!allDay);
   }
 
@@ -47,20 +47,20 @@ function EditEventModal(props) {
     setDescription(event.target.value);
   }
 
-  function handleStartTimeChange(time) {
-    console.log(time)
-    setStartTime(time);
-  }
+  // function handleStartTimeChange(time) {
+  //   console.log(time)
+  //   setStartTime(time);
+  // }
 
-  function handleEndTimeChange(time) {
-    console.log(time)
-    setEndTime(time);
-  }
+  // function handleEndTimeChange(time) {
+  //   console.log(time)
+  //   setEndTime(time);
+  // }
 
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await createEvent({ title, type, date, allDay, description });
+      await editEvent({ title, type, date, allDay, description, eventID: props.editEventInfo._id});
       toast.success("Event updated ");
       props.onHide(); //hide modal
 
@@ -93,7 +93,7 @@ function EditEventModal(props) {
               type="text"
               placeholder="Enter title"
               onChange={handleTitleChange}
-              value={props.editEventInfo.title}
+              value={title}
             />
           </Form.Group>
           <Form.Select onChange={handleTypeChange}>
@@ -118,10 +118,9 @@ function EditEventModal(props) {
               type="text"
               placeholder="Enter description"
               onChange={handleDescriptionChange}
-              value={props.editEventInfo.description}
             />
           </Form.Group>
-
+{/* 
           <TimePicker 
           onChange={handleStartTimeChange} 
           disableClock={true}
@@ -130,7 +129,7 @@ function EditEventModal(props) {
           <TimePicker 
           onChange={handleEndTimeChange} 
           disableClock={true}
-          value={endTime} />
+          value={endTime} /> */}
 
           <Button variant="primary" type="submit">
             Submit
