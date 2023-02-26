@@ -22,23 +22,23 @@ function CalendarPage() {
     setEventDate(arg.dateStr);
   };
 
-  function handleDeleteEvent() {
-    const eventID = editEventInfo.extendedProps._id;
-    console.log("delete event id", eventID);
-    deleteEvent(eventID);
-    setModalEditShow(false);
-    getAllEvents();
-  }
-
   async function editEvent(e) {
     setModalEditShow(true);
     const eventId = e.event._def.extendedProps._id;
-
+    
     const response = await getOneEvent(eventId);
     setEditEventInfo(response.data);
     getOneEvent(e.event._def.extendedProps._id);
   }
 
+  function handleDeleteEvent() {
+    const eventID = editEventInfo._id;
+    console.log("delete event id", eventID);
+    deleteEvent(eventID);
+    setModalEditShow(false);
+    getAllEvents();
+  }
+  
   useEffect(() => {
     //api call to get events
 

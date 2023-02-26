@@ -17,6 +17,8 @@ function CustomCalendar(props) {
         eventDrop={(e) => props.eventDrop(e)}
         eventClick={(e) => props.editEvent(e)}
         eventResize={(e) => props.eventDrop(e)}
+        // Hover
+        eventMouseEnter={(e) => console.log(e)}
         buttonText={{
           today: "Today",
           month: "Month",
