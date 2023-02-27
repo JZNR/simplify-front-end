@@ -7,6 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getEvents, editEvent } from "../api";
 import TimePicker from 'react-time-picker';
+import { GithubPicker } from 'react-color';
 
 
 function EditEventModal(props) {
@@ -29,6 +30,8 @@ function EditEventModal(props) {
     const [date, setDate] = useState(props.eventDate);
     const [allDay, setAllDay] = useState(false);
     const [description, setDescription] = useState(props.editEventInfo.description);
+    const [color, setColor] = useState(props.editEventInfo.color)
+
     // const [startTime, setStartTime] = useState(currentStartTime);
     // const [endTime, setEndTime] = useState(currentStartTime);
 
@@ -47,6 +50,10 @@ function EditEventModal(props) {
     setDescription(event.target.value);
   }
 
+  function handleChangeColor(color) {
+    setColor(color.hex)
+  }
+
   // function handleStartTimeChange(time) {
   //   console.log(time)
   //   setStartTime(time);
@@ -60,7 +67,7 @@ function EditEventModal(props) {
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await editEvent({ title, type, date, allDay, description, eventID: props.editEventInfo._id});
+      await editEvent({ title, type, date, allDay, description, eventID: props.editEventInfo._id, color});
       toast.success("Event updated ");
       props.onHide(); //hide modal
 
@@ -130,6 +137,20 @@ function EditEventModal(props) {
           onChange={handleEndTimeChange} 
           disableClock={true}
           value={endTime} /> */}
+
+          <Form.Group className="mb-3" controlId="formBasicDescription">
+            <Form.Label>Color</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="#000"
+              value={color}
+            />
+          </Form.Group>
+
+          <GithubPicker
+           color={ color }
+           onChangeComplete={ handleChangeColor }
+          />
 
           <Button variant="primary" type="submit">
             Submit
