@@ -12,6 +12,7 @@ import CalendarPage from "./pages/CalendarPage";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Edit from "./pages/Edit";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
@@ -27,6 +28,7 @@ function App() {
           <Route path={"/"} element={<Login />} />
           <Route path={"/calendar"} element={loggedUser && <CalendarPage />} />
           <Route path={"/signup"} element={<Signup />} />
+          <Route path={"/profile"} element={<Edit />} />
         </Routes>
       </Container>
     </div>
