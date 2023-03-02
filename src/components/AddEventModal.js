@@ -6,9 +6,8 @@ import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getEvents } from "../api";
-import TimePicker from 'react-time-picker';
-import { GithubPicker } from 'react-color';
-
+import TimePicker from "react-time-picker";
+import { GithubPicker } from "react-color";
 
 function AddEventModal(props) {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ function AddEventModal(props) {
   const [description, setDescription] = useState("");
   const [startTime, setStartTime] = useState("10:00");
   const [endTime, setEndTime] = useState("12:00");
-  const [color, setColor] = useState("#ff000")
+  const [color, setColor] = useState("#ff000");
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -34,24 +33,33 @@ function AddEventModal(props) {
   function handleDescriptionChange(event) {
     setDescription(event.target.value);
   }
-  
+
   function handleStartTimeChange(time) {
-    console.log(time)
+    console.log(time);
     setStartTime(time);
   }
 
   function handleEndTimeChange(time) {
-    console.log(time)
+    console.log(time);
     setEndTime(time);
   }
   function handleChangeColor(color) {
-    setColor(color.hex)
+    setColor(color.hex);
   }
 
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await createEvent({ title, type, date, allDay, description, startTime, endTime, color});
+      await createEvent({
+        title,
+        type,
+        date,
+        allDay,
+        description,
+        startTime,
+        endTime,
+        color,
+      });
       toast.success("Event created ");
       props.onHide(); //hide modal
 
@@ -85,10 +93,10 @@ function AddEventModal(props) {
             />
           </Form.Group>
           <Form.Select onChange={handleTypeChange}>
-            <option>event</option>
-            <option>task</option>
-            <option>meeting</option>
-            <option>reminder</option>
+            <option>Event</option>
+            <option>Task</option>
+            <option>Meeting</option>
+            <option>Reminder</option>
           </Form.Select>
 
           <Form.Group className="mb-3">
@@ -109,29 +117,24 @@ function AddEventModal(props) {
             />
           </Form.Group>
 
-          <TimePicker 
-          onChange={handleStartTimeChange} 
-          disableClock={true}
-          value={startTime} />
+          <TimePicker
+            onChange={handleStartTimeChange}
+            disableClock={true}
+            value={startTime}
+          />
 
-          <TimePicker 
-          onChange={handleEndTimeChange} 
-          disableClock={true}
-          value={endTime} />
+          <TimePicker
+            onChange={handleEndTimeChange}
+            disableClock={true}
+            value={endTime}
+          />
 
-        <Form.Group className="mb-3" controlId="formBasicDescription">
+          <Form.Group className="mb-3" controlId="formBasicDescription">
             <Form.Label>Color</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="#000"
-              value={color}
-            />
+            <Form.Control type="text" placeholder="#000" value={color} />
           </Form.Group>
 
-          <GithubPicker
-           color={ color }
-           onChangeComplete={ handleChangeColor }
-          />
+          <GithubPicker color={color} onChangeComplete={handleChangeColor} />
 
           <Button variant="primary" type="submit">
             Submit

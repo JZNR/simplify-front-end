@@ -6,34 +6,34 @@ import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getEvents, editEvent } from "../api";
-import TimePicker from 'react-time-picker';
-import { GithubPicker } from 'react-color';
-
+import TimePicker from "react-time-picker";
+import { GithubPicker } from "react-color";
 
 function EditEventModal(props) {
+  // Regex for the current Time of the Event being Edited.
 
-  // Regex for the current Time of the Event being Edited. 
+  // const eventStartDate = props.editEventInfo.start;
+  // const eventEndDate = props.editEventInfo.end;
+  // const timeRegex = /T(\d{2}:\d{2}:\d{2})/;
 
-    // const eventStartDate = props.editEventInfo.start;
-    // const eventEndDate = props.editEventInfo.end;
-    // const timeRegex = /T(\d{2}:\d{2}:\d{2})/;
-    
-    // const startDateMatch = eventStartDate.match(timeRegex);
-    // const endDateMatch = eventEndDate.match(timeRegex);
+  // const startDateMatch = eventStartDate.match(timeRegex);
+  // const endDateMatch = eventEndDate.match(timeRegex);
 
-    // const currentStartTime = startDateMatch[1];
-    // const currentEndTime = endDateMatch[1];
+  // const currentStartTime = startDateMatch[1];
+  // const currentEndTime = endDateMatch[1];
 
-    const navigate = useNavigate();
-    const [title, setTitle] = useState(props.editEventInfo.title);
-    const [type, setType] = useState("event");
-    const [date, setDate] = useState(props.eventDate);
-    const [allDay, setAllDay] = useState(false);
-    const [description, setDescription] = useState(props.editEventInfo.description);
-    const [color, setColor] = useState(props.editEventInfo.color)
+  const navigate = useNavigate();
+  const [title, setTitle] = useState(props.editEventInfo.title);
+  const [type, setType] = useState("event");
+  const [date, setDate] = useState(props.eventDate);
+  const [allDay, setAllDay] = useState(false);
+  const [description, setDescription] = useState(
+    props.editEventInfo.description
+  );
+  const [color, setColor] = useState(props.editEventInfo.color);
 
-    // const [startTime, setStartTime] = useState(currentStartTime);
-    // const [endTime, setEndTime] = useState(currentStartTime);
+  // const [startTime, setStartTime] = useState(currentStartTime);
+  // const [endTime, setEndTime] = useState(currentStartTime);
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -51,7 +51,7 @@ function EditEventModal(props) {
   }
 
   function handleChangeColor(color) {
-    setColor(color.hex)
+    setColor(color.hex);
   }
 
   // function handleStartTimeChange(time) {
@@ -67,7 +67,15 @@ function EditEventModal(props) {
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await editEvent({ title, type, date, allDay, description, eventID: props.editEventInfo._id, color});
+      await editEvent({
+        title,
+        type,
+        date,
+        allDay,
+        description,
+        eventID: props.editEventInfo._id,
+        color,
+      });
       toast.success("Event updated ");
       props.onHide(); //hide modal
 
@@ -100,10 +108,13 @@ function EditEventModal(props) {
               type="text"
               placeholder="Enter title"
               onChange={handleTitleChange}
-              value={title}
+              value={props.editEventInfo.title}
             />
           </Form.Group>
-          <Form.Select onChange={handleTypeChange}>
+          <Form.Select
+            onChange={handleTypeChange}
+            defaultValue={props.editEventInfo.type}
+          >
             <option>Event</option>
             <option>Task</option>
             <option>Meeting</option>
@@ -125,9 +136,10 @@ function EditEventModal(props) {
               type="text"
               placeholder="Enter description"
               onChange={handleDescriptionChange}
+              value={props.editEventInfo.description}
             />
           </Form.Group>
-{/* 
+          {/* 
           <TimePicker 
           onChange={handleStartTimeChange} 
           disableClock={true}
@@ -143,13 +155,13 @@ function EditEventModal(props) {
             <Form.Control
               type="text"
               placeholder="#000"
-              value={color}
+              value={props.editEventInfo.color}
             />
           </Form.Group>
 
           <GithubPicker
-           color={ color }
-           onChangeComplete={ handleChangeColor }
+            color={props.editEventInfo.color}
+            onChangeComplete={handleChangeColor}
           />
 
           <Button variant="primary" type="submit">
