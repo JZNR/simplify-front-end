@@ -44,48 +44,50 @@ function Login() {
 
   return (
     <Container fluid className="login-page">
+      <img src="logo.svg" />
       <Row>
         <Col className="login-form">
-          <div className="login-form-text">
-            {" "}
-            <h3>Log in</h3>
-            <p>
-              If you don’t have an account register You can{" "}
-              <Link to={"/signup"}>Register here !</Link>{" "}
-            </p>
-          </div>
-          <Form onSubmit={handleSubmitForm}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label htmlFor="email">Email address</Form.Label>
-              <Form.Control
-                placeholder="Enter email"
-                id="email"
-                type="text"
-                value={email}
-                onChange={handleEmailChange}
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+          <div className="width-form">
+            <div className="login-form-text">
+              {" "}
+              <h3 className="mb-4">Log in</h3>
+              <p className="mb-3">
+                If you don’t have an account register<br></br> You can{" "}
+                <Link className="link" to={"/signup"}>
+                  Register here !
+                </Link>{" "}
+              </p>
+            </div>
+            <Form onSubmit={handleSubmitForm}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label htmlFor="email">Email address</Form.Label>
+                <Form.Control
+                  placeholder="Enter email"
+                  id="email"
+                  type="text"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label htmlFor="password">Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
-          </Form>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label htmlFor="password">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out" />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Login
+              </Button>
+            </Form>
+          </div>
         </Col>
         <Col className="login-left">
           <img src="illustration.svg" />
