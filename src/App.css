@@ -32,6 +32,7 @@ h3 {
 .login-page {
   max-height: 100vh;
   color: white;
+  height: 100vh;
 }
 
 .login-left {
@@ -60,6 +61,9 @@ h3 {
   justify-content: center;
   text-align: start;
   align-content: start;
+}
+.login-form .form-label {
+  font-size: 14px;
 }
 .login-form .width-form {
   width: 80%;
@@ -92,6 +96,11 @@ h3 {
   box-shadow: none;
   border-bottom: 1px solid white;
   color: white;
+}
+.login-page .logo {
+  position: absolute;
+  margin-top: 3%;
+  margin-left: 2%;
 }
 /*calendar styles*/
 .fc .fc-daygrid-day-number {

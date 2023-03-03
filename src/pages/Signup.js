@@ -35,24 +35,25 @@ function Signup() {
   return (
     <>
       <Container fluid className="login-page">
-        <Row>
+        <img src="logo.svg" className="logo" />
+        <Row className="h-100">
           <Col className="login-form">
             <div className="width-form">
               <div className="login-form-text">
                 {" "}
                 <h3 className="mb-4">Register</h3>
-                <p className="mb-3">
-                  Already have an account?{" "}
+                <p className="mb-5">
+                  If you already have an account register<br></br> You can{" "}
                   <Link className="link " to={"/"}>
-                    Login !
+                    Login here !
                   </Link>{" "}
                 </p>
               </div>
               <Form onSubmit={handleSubmitForm}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label htmlFor="email">Email address</Form.Label>
+                  <Form.Label htmlFor="email">Email </Form.Label>
                   <Form.Control
-                    placeholder="Enter email"
+                    placeholder="Enter your email address"
                     id="email"
                     type="text"
                     value={email}
@@ -64,16 +65,16 @@ function Signup() {
                   <Form.Label htmlFor="password">Password</Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter your Password"
                     id="password"
                     value={password}
                     onChange={handlePasswordChange}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                {/*<Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
+                </Form.Group>*/}
+                <Button variant="primary" type="submit" className="mt-4">
                   Sign Up
                 </Button>
               </Form>

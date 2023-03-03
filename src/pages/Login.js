@@ -44,14 +44,14 @@ function Login() {
 
   return (
     <Container fluid className="login-page">
-      <img src="logo.svg" />
-      <Row>
+      <img src="logo.svg" className="logo" />
+      <Row className="h-100">
         <Col className="login-form">
           <div className="width-form">
             <div className="login-form-text">
               {" "}
               <h3 className="mb-4">Log in</h3>
-              <p className="mb-3">
+              <p className="mb-5">
                 If you don’t have an account register<br></br> You can{" "}
                 <Link className="link" to={"/signup"}>
                   Register here !
@@ -60,9 +60,9 @@ function Login() {
             </div>
             <Form onSubmit={handleSubmitForm}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label htmlFor="email">Email address</Form.Label>
+                <Form.Label htmlFor="email">Email </Form.Label>
                 <Form.Control
-                  placeholder="Enter email"
+                  placeholder="Enter your email address"
                   id="email"
                   type="text"
                   value={email}
@@ -74,16 +74,16 @@ function Login() {
                 <Form.Label htmlFor="password">Password</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder="Enter your Password"
                   id="password"
                   value={password}
                   onChange={handlePasswordChange}
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              {/*<Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
-              <Button variant="primary" type="submit">
+              </Form.Group>*/}
+              <Button variant="primary" type="submit" className="mt-4">
                 Login
               </Button>
             </Form>
