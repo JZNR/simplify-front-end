@@ -94,11 +94,19 @@ function EditEventModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton closeVariant="white">
         <Modal.Title id="contained-modal-title-vcenter">
           Edit Event{" "}
         </Modal.Title>
-        {props.eventDate}
+        <h6>
+          {" "}
+          for{" "}
+          {new Intl.DateTimeFormat("en-GB", {
+            month: "long",
+            day: "2-digit",
+            year: "numeric",
+          }).format(new Date(props.eventDate))}
+        </h6>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmitForm}>
@@ -111,6 +119,7 @@ function EditEventModal(props) {
               value={props.editEventInfo.title}
             />
           </Form.Group>
+          <Form.Label>Event Type</Form.Label>
           <Form.Select
             onChange={handleTypeChange}
             defaultValue={props.editEventInfo.type}
@@ -121,7 +130,7 @@ function EditEventModal(props) {
             <option>Reminder</option>
           </Form.Select>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3 mt-3">
             <Form.Check
               defaultChecked={props.editEventInfo.allDay}
               type="checkbox"
@@ -171,7 +180,9 @@ function EditEventModal(props) {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button onClick={props.handleDeleteEvent}>Delete Event</Button>
+        <Button className="delete-event" onClick={props.handleDeleteEvent}>
+          Delete Event
+        </Button>
       </Modal.Footer>
     </Modal>
   );

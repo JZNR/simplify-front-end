@@ -31,6 +31,7 @@ function CustomCalendar(props) {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
+        fixedWeekCount={false}
         events={props.events}
       />
     </>

@@ -6,26 +6,16 @@ body {
 .App {
   min-height: 100vh;
   background-color: #1e1e2d;
+  max-height: 100vh;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  font-weight: bold !important;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 h3 {
   font-weight: bold !important;
+}
+.row {
+  max-width: 100%;
 }
 /*login styles*/
 
@@ -66,14 +56,21 @@ h3 {
   font-size: 14px;
 }
 .login-form .width-form {
-  width: 80%;
+  width: 70%;
 }
 .login-form button {
   width: 100%;
   color: white;
   background-color: #3f3fc0;
-  border-radius: 10px;
   border: none;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0px 4px 26px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  height: 53px;
+}
+.login-form button:hover {
+  background-color: #21218e !important;
 }
 .login-form input {
   background-color: transparent;
@@ -81,6 +78,9 @@ h3 {
   border: none;
   border-bottom: white 1px solid;
   border-radius: 0px;
+}
+.login-form .icon-input {
+  position: absolute;
 }
 .login-form input::placeholder {
   color: white;
@@ -91,18 +91,35 @@ h3 {
   font-weight: bold;
 }
 .form-control:focus {
-  background-color: transparent;
-  border-color: transparent;
-  box-shadow: none;
-  border-bottom: 1px solid white;
-  color: white;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid white !important;
+  color: white !important;
+}
+.form-control:active {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid white !important;
+  color: white !important;
 }
 .login-page .logo {
   position: absolute;
   margin-top: 3%;
   margin-left: 2%;
 }
+
 /*calendar styles*/
+.calendar-page {
+  padding: 3.5%;
+  padding-bottom: 0;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+.fc .fc-view-harness {
+  max-height: 85vh;
+}
 .fc .fc-daygrid-day-number {
   color: white;
   text-decoration: none;
@@ -113,4 +130,204 @@ h3 {
   color: white;
   text-decoration: none;
   font-weight: 600;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #3f3fc0 !important;
+}
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  background-color: white;
+  color: #3f3fc0 !important;
+  text-align: center;
+  border-radius: 50%;
+  width: 30px;
+}
+.fc-daygrid-day-number {
+  margin: 8px;
+}
+.fc .fc-timegrid-slot-minor {
+  border: none !important;
+}
+.fc .fc-cell-shaded {
+  background-color: white !important;
+}
+.fc .fc-timegrid-col.fc-day-today {
+  background-color: #9292c5 !important;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus,
+.fc .fc-button-primary:not(:disabled):active:focus {
+  box-shadow: none !important;
+}
+/*navbar */
+
+.nav-bar {
+  background-color: #161622;
+  height: 100vh;
+  text-decoration: none;
+  padding: 20% 10%;
+}
+.nav-bar .icon-nav-bar {
+  width: 20px;
+  margin-right: 9%;
+}
+.my-profile {
+  align-items: inherit !important;
+}
+.picture-my-profile {
+  max-width: 24px;
+  max-height: 24px;
+  border-radius: 2px;
+  margin-right: 9%;
+}
+
+.picture-my-profile img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.nav-bar .logo {
+  margin-bottom: 50%;
+}
+.nav-bar ul {
+  list-style: none;
+
+  padding-left: 1rem !important;
+}
+.nav-bar li {
+  margin-bottom: 15%;
+  display: flex;
+  align-items: center;
+}
+.nav-bar a:hover {
+  color: #3f3fc0 !important;
+}
+.nav-bar a {
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.nav-bar button {
+  bottom: 5%;
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  color: #fb493f;
+  font-size: 20px;
+  padding-left: 0;
+}
+
+.nav-bar .line {
+  margin: 0 -10px;
+  height: 1px;
+  background-color: #2d2d3e;
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: #3f3fc0 !important;
+  border: #3f3fc0 !important;
+}
+.fc .fc-button-primary:hover {
+  background-color: #21218e !important;
+}
+.fc .fc-button-primary {
+  background-color: #171722 !important;
+  border: #171722 !important;
+}
+
+/*modal*/
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+}
+.modal-content {
+  background-color: #171722 !important;
+  color: white !important;
+  font-family: "Poppins", sans-serif !important;
+  padding: 2% 5%;
+  width: 70% !important;
+}
+.modal-body {
+  padding-top: 0 !important;
+}
+.modal-header {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.modal-content .modal-title {
+  font-weight: bold;
+  margin-right: 1.5%;
+  font-size: 24px;
+}
+.modal-header h6 {
+  margin-bottom: 0;
+}
+.modal-content .form-control {
+  background-color: transparent !important;
+  color: white !important;
+  border: none !important;
+  border-bottom: white 1px solid !important;
+  border-radius: 0px !important;
+}
+.modal-content .form-select {
+  background-color: transparent !important;
+  color: white !important;
+  border: none !important;
+  border-bottom: white 1px solid !important;
+  border-radius: 0px !important;
+}
+.modal-content .form-label {
+  margin-top: 2%;
+  font-size: 14px;
+}
+.modal-content .form-control::placeholder {
+  color: white !important;
+}
+.modal-content .btn-primary {
+  width: 100%;
+  color: white;
+  background-color: #3f3fc0;
+  border: none;
+  margin-top: 4%;
+  font-size: 18px;
+  box-shadow: 0px 4px 26px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  height: 43px;
+}
+.modal-content .btn:hover {
+  background-color: #21218e;
+}
+.time-modal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.react-time-picker,
+.react-time-picker *,
+.react-time-picker *:before,
+.react-time-picker *:after {
+  color: white;
+}
+.delete-event {
+  background-color: transparent !important;
+  border: #3f3fc0 2px solid !important;
+  margin-top: 0 !important;
+}
+.modal-footer {
+  border-top: none !important;
+}
+.github-picker {
+  width: 420px !important;
+  background-color: #1e1e2d !important;
+  margin-bottom: 5%;
+}
+.react-time-picker__clear-button__icon svg {
+  fill: white !important;
 }

@@ -78,9 +78,17 @@ function AddEventModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton closeVariant="white">
         <Modal.Title id="contained-modal-title-vcenter">Add Event </Modal.Title>
-        {props.eventDate}
+        <h6>
+          {" "}
+          for{" "}
+          {new Intl.DateTimeFormat("en-GB", {
+            month: "long",
+            day: "2-digit",
+            year: "numeric",
+          }).format(new Date(props.eventDate))}
+        </h6>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmitForm}>
@@ -92,6 +100,7 @@ function AddEventModal(props) {
               onChange={handleTitleChange}
             />
           </Form.Group>
+          <Form.Label>Event Type</Form.Label>
           <Form.Select onChange={handleTypeChange}>
             <option>Event</option>
             <option>Task</option>
@@ -99,8 +108,21 @@ function AddEventModal(props) {
             <option>Reminder</option>
           </Form.Select>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3 mt-4 flex time-modal">
+            <Form.Label className="me-3">Time</Form.Label>
+            <TimePicker
+              onChange={handleStartTimeChange}
+              disableClock={true}
+              value={startTime}
+            />
+
+            <TimePicker
+              onChange={handleEndTimeChange}
+              disableClock={true}
+              value={endTime}
+            />
             <Form.Check
+              className="ms-5"
               type="checkbox"
               checked={allDay}
               value={allDay}
@@ -117,19 +139,7 @@ function AddEventModal(props) {
             />
           </Form.Group>
 
-          <TimePicker
-            onChange={handleStartTimeChange}
-            disableClock={true}
-            value={startTime}
-          />
-
-          <TimePicker
-            onChange={handleEndTimeChange}
-            disableClock={true}
-            value={endTime}
-          />
-
-          <Form.Group className="mb-3" controlId="formBasicDescription">
+          <Form.Group className="mb-3" controlId="formColor">
             <Form.Label>Color</Form.Label>
             <Form.Control type="text" placeholder="#000" value={color} />
           </Form.Group>

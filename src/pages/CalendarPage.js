@@ -25,9 +25,9 @@ function CalendarPage() {
   async function editEvent(e) {
     setModalEditShow(true);
     const eventId = e.event._def.extendedProps._id;
-    
+
     const response = await getOneEvent(eventId);
-    console.log(response.data)
+    console.log(response.data);
     setEditEventInfo(response.data);
     getOneEvent(e.event._def.extendedProps._id);
   }
@@ -39,7 +39,7 @@ function CalendarPage() {
     setModalEditShow(false);
     getAllEvents();
   }
-  
+
   useEffect(() => {
     //api call to get events
 
@@ -54,7 +54,7 @@ function CalendarPage() {
   }
 
   return (
-    <>
+    <div className="calendar-page">
       <CustomCalendar
         handleDateClick={handleDateClick}
         events={events}
@@ -80,7 +80,7 @@ function CalendarPage() {
           editEventInfo={editEventInfo}
         />
       )}
-    </>
+    </div>
   );
 }
 

@@ -20,17 +20,28 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
-      <Container>
-      
-        {loggedUser && <Navbar />}
+      <div className="h-100">
+        <Row>
+          {loggedUser && (
+            <Col xs={2}>
+              {" "}
+              <Navbar />
+            </Col>
+          )}
+          <Col>
+            <Routes>
+              <Route path={"/"} element={<Login />} />
+              <Route path={"/signup"} element={<Signup />} />
+              <Route
+                path={"/calendar"}
+                element={loggedUser && <CalendarPage />}
+              />
 
-        <Routes>
-          <Route path={"/"} element={<Login />} />
-          <Route path={"/calendar"} element={loggedUser && <CalendarPage />} />
-          <Route path={"/signup"} element={<Signup />} />
-          <Route path={"/profile"} element={<Edit />} />
-        </Routes>
-      </Container>
+              <Route path={"/profile"} element={<Edit />} />
+            </Routes>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 }
