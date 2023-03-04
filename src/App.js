@@ -12,7 +12,7 @@ import CalendarPage from "./pages/CalendarPage";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Edit from "./pages/Edit";
+import Profile from "./pages/Profile";
 import IsPrivate from "./components/IsPrivate";
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
               />
               <Route 
               path={"/profile"} 
-              element={<IsPrivate> <Edit /> </IsPrivate>} />
+              element={<IsPrivate> <Profile /> </IsPrivate>} />
             </Routes>
           </Col>
         </Row>

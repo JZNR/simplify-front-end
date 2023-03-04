@@ -5,7 +5,7 @@ import { useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import { UserContext } from "../context/user.context";
 
-function Edit() {
+function Profile() {
   const [events, setEvents] = useState("");
   const { loggedUser } = useContext(UserContext);
 
@@ -17,7 +17,7 @@ function Edit() {
     //api call to get events
 
     getAllEvents();
-  }, []);
+  }, [loggedUser]);
   return (
     <div className="profile-page">
       <Button variant="primary" className="edit-profile-button">
@@ -55,4 +55,4 @@ function Edit() {
   );
 }
 
-export default Edit;
+export default Profile;
