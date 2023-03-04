@@ -12,7 +12,6 @@ import { GithubPicker } from "react-color";
 function AddEventModal(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const [type, setType] = useState("event");
   const [date, setDate] = useState(props.eventDate);
   const [allDay, setAllDay] = useState(false);
   const [description, setDescription] = useState("");
@@ -23,10 +22,6 @@ function AddEventModal(props) {
   function handleTitleChange(event) {
     setTitle(event.target.value);
   }
-  function handleTypeChange(event) {
-    setType(event.target.value);
-  }
-
   function handleAllDayChange(event) {
     setAllDay(!allDay);
   }
@@ -52,7 +47,6 @@ function AddEventModal(props) {
     try {
       await createEvent({
         title,
-        type,
         date,
         allDay,
         description,
@@ -100,13 +94,6 @@ function AddEventModal(props) {
               onChange={handleTitleChange}
             />
           </Form.Group>
-          <Form.Label>Event Type</Form.Label>
-          <Form.Select onChange={handleTypeChange}>
-            <option>Event</option>
-            <option>Task</option>
-            <option>Meeting</option>
-            <option>Reminder</option>
-          </Form.Select>
 
           <Form.Group className="mb-3 mt-4 flex time-modal">
             <Form.Label className="me-3">Time</Form.Label>

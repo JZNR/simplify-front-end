@@ -24,7 +24,6 @@ function EditEventModal(props) {
 
   const navigate = useNavigate();
   const [title, setTitle] = useState(null);
-  const [type, setType] = useState("event");
   const [date, setDate] = useState(null);
   const [allDay, setAllDay] = useState(false);
   const [description, setDescription] = useState(
@@ -37,9 +36,6 @@ function EditEventModal(props) {
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
-  }
-  function handleTypeChange(event) {
-    setType(event.target.value.toLowerCase());
   }
 
   function handleAllDayChange() {
@@ -84,7 +80,6 @@ function EditEventModal(props) {
     try {
       await editEvent({
         title,
-        type,
         date,
         allDay,
         description,
@@ -134,17 +129,6 @@ function EditEventModal(props) {
               value={title}
             />
           </Form.Group>
-          <Form.Label>Event Type</Form.Label>
-          <Form.Select
-            onChange={handleTypeChange}
-            defaultValue={type}
-          >
-            <option>Event</option>
-            <option>Task</option>
-            <option>Meeting</option>
-            <option>Reminder</option>
-          </Form.Select>
-
           <Form.Group className="mb-3 mt-3">
             <Form.Check
               defaultChecked={allDay}
