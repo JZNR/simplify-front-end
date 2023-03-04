@@ -11,11 +11,11 @@ function Edit() {
 
   async function getAllEvents() {
     const response = await getEvents();
-    setEvents(response.data);
+    await setEvents(response.data);
+    console.log(events);
   }
   useEffect(() => {
     //api call to get events
-
     getAllEvents();
   }, []);
   return (
@@ -35,8 +35,8 @@ function Edit() {
         </div>
       </div>
       <h3>Upcoming events</h3>
-      <div className="profile-events">
-        {events.map((event) => {
+      {/*<div className="profile-events">
+        {events?.map((event) => {
           return (
             <Card>
               <Card.Body>
@@ -50,7 +50,7 @@ function Edit() {
             </Card>
           );
         })}
-      </div>
+      </div>*/}
     </div>
   );
 }
