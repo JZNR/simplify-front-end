@@ -28,7 +28,7 @@ function Signup() {
       toast.success("User Created");
       navigate("/");
     } catch (error) {
-      toast.error("Whatever occured here", error);
+      toast.error("Error occured", error);
     }
   }
 

@@ -4,16 +4,19 @@ import { UserContext } from '../context/user.context'
 import { Navigate } from 'react-router-dom'
 
 function IsPrivate( { children } ) {
-    const { loggedUser } = useContext(UserContext);
+    const { loggedUser, isLoading } = useContext(UserContext);
+
+    if (isLoading) {
+      return <div>Loading</div>
+    }
     
+
     if(!loggedUser) {
         return <Navigate to="/login" />
     } else {
         return children;
     }
-  return (
-    <div>IsPrivate</div>
-  )
+  
 }
 
 export default IsPrivate;

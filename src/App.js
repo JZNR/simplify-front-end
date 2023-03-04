@@ -13,6 +13,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Edit from "./pages/Edit";
+import IsPrivate from "./components/IsPrivate";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
@@ -30,14 +31,23 @@ function App() {
           )}
           <Col>
             <Routes>
-              <Route path={"/"} element={<Login />} />
-              <Route path={"/signup"} element={<Signup />} />
+              <Route 
+              path={"/login"} 
+              element={<Login />} />
+              <Route 
+              path={"/signup"} 
+              element={<Signup />} />
               <Route
                 path={"/calendar"}
-                element={loggedUser && <CalendarPage />}
+                element={<IsPrivate><CalendarPage/></IsPrivate>}
               />
-
-              <Route path={"/profile"} element={<Edit />} />
+                <Route
+                path={"/"}
+                element={<IsPrivate><CalendarPage/></IsPrivate>}
+              />
+              <Route 
+              path={"/profile"} 
+              element={<IsPrivate> <Edit /> </IsPrivate>} />
             </Routes>
           </Col>
         </Row>

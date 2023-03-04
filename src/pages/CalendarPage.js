@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import CustomCalendar from ".././components/CustomCalendar";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AddEventModal from ".././components/AddEventModal";
 import { getEvents, deleteEvent, updateEvent, getOneEvent } from "../api";
 import EditEventModal from ".././components/EditEventModal";
+import { UserContext } from "../context/user.context";
 
 function CalendarPage() {
   const [modalShow, setModalShow] = useState(false);
   const [modalEditShow, setModalEditShow] = useState(false);
   const [eventDate, setEventDate] = useState();
   const [events, setEvents] = useState("");
-  const [editEventInfo, setEditEventInfo] = useState("");
+  const { loggedUser } = useContext(UserContext);
+  const [eventId, setEventId] = useState(null)
 
   async function getAllEvents() {
     const response = await getEvents();
+    console.log("response events", response)
     setEvents(response.data);
   }
 
@@ -24,18 +27,12 @@ function CalendarPage() {
 
   async function editEvent(e) {
     setModalEditShow(true);
-    const eventId = e.event._def.extendedProps._id;
-
-    const response = await getOneEvent(eventId);
-    console.log(response.data);
-    setEditEventInfo(response.data);
-    getOneEvent(e.event._def.extendedProps._id);
+    setEventId(e.event._def.extendedProps._id); 
   }
 
-  function handleDeleteEvent() {
-    const eventID = editEventInfo._id;
-    console.log("delete event id", eventID);
-    deleteEvent(eventID);
+  function handleDeleteEvent() {;
+    console.log("delete event id", eventId);
+    deleteEvent(eventId);
     setModalEditShow(false);
     getAllEvents();
   }
@@ -44,7 +41,7 @@ function CalendarPage() {
     //api call to get events
 
     getAllEvents();
-  }, []);
+  }, [loggedUser]);
 
   function eventDrop(e) {
     console.log(e);
@@ -69,7 +66,7 @@ function CalendarPage() {
           setEvents={setEvents}
         />
       )}
-      {modalEditShow && (
+      {modalEditShow && eventId && (
         <EditEventModal
           eventDate={eventDate}
           show={modalEditShow}
@@ -77,7 +74,7 @@ function CalendarPage() {
           setEvents={setEvents}
           editEvent={editEvent}
           handleDeleteEvent={handleDeleteEvent}
-          editEventInfo={editEventInfo}
+          eventId={eventId}
         />
       )}
     </div>

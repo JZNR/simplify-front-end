@@ -34,8 +34,8 @@ function Login() {
 
       // setting the logged user in the context
       // setLoggedUser({ email, password });
-      authenticateUser();
-      toast.success("You are logged in");
+      await authenticateUser();
+      toast.success("Logged in");
       navigate("/calendar");
     } catch (error) {
       toast.error("Whatever occured here", error);

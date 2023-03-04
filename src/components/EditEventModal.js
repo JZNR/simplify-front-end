@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import { createEvent } from "../api";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { getEvents, editEvent } from "../api";
+import { useEffect, useState } from "react";
+import { getEvents, editEvent, getOneEvent } from "../api";
 import TimePicker from "react-time-picker";
 import { GithubPicker } from "react-color";
 
@@ -23,14 +23,14 @@ function EditEventModal(props) {
   // const currentEndTime = endDateMatch[1];
 
   const navigate = useNavigate();
-  const [title, setTitle] = useState(props.editEventInfo.title);
+  const [title, setTitle] = useState(null);
   const [type, setType] = useState("event");
-  const [date, setDate] = useState(props.eventDate);
+  const [date, setDate] = useState(null);
   const [allDay, setAllDay] = useState(false);
   const [description, setDescription] = useState(
-    props.editEventInfo.description
+   null
   );
-  const [color, setColor] = useState(props.editEventInfo.color);
+  const [color, setColor] = useState(null);
 
   // const [startTime, setStartTime] = useState(currentStartTime);
   // const [endTime, setEndTime] = useState(currentStartTime);
@@ -64,6 +64,21 @@ function EditEventModal(props) {
   //   setEndTime(time);
   // }
 
+  async function handleGetEvent(eventId) {
+    const response = await getOneEvent(eventId);
+    setTitle(response.data.title);
+    setDate(response.data.date);
+    setDescription(response.data.description);
+    setAllDay(response.data.allDay);
+    setColor(response.data.color);
+  }
+
+ useEffect(() => {
+  if (props.eventId) {
+    handleGetEvent(props.eventId);
+  }
+}, [props.eventId])
+
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
@@ -73,7 +88,7 @@ function EditEventModal(props) {
         date,
         allDay,
         description,
-        eventID: props.editEventInfo._id,
+        eventID: props.eventId,
         color,
       });
       toast.success("Event updated ");
@@ -87,7 +102,7 @@ function EditEventModal(props) {
     }
   }
 
-  return (
+  return !title ? <div>Loading...</div> :  (
     <Modal
       {...props}
       size="lg"
@@ -105,7 +120,7 @@ function EditEventModal(props) {
             month: "long",
             day: "2-digit",
             year: "numeric",
-          }).format(new Date(props.eventDate))}
+          }).format(new Date(date))}
         </h6>
       </Modal.Header>
       <Modal.Body>
@@ -116,13 +131,13 @@ function EditEventModal(props) {
               type="text"
               placeholder="Enter title"
               onChange={handleTitleChange}
-              value={props.editEventInfo.title}
+              value={title}
             />
           </Form.Group>
           <Form.Label>Event Type</Form.Label>
           <Form.Select
             onChange={handleTypeChange}
-            defaultValue={props.editEventInfo.type}
+            defaultValue={type}
           >
             <option>Event</option>
             <option>Task</option>
@@ -132,7 +147,7 @@ function EditEventModal(props) {
 
           <Form.Group className="mb-3 mt-3">
             <Form.Check
-              defaultChecked={props.editEventInfo.allDay}
+              defaultChecked={allDay}
               type="checkbox"
               label="All day"
               onChange={handleAllDayChange}
@@ -145,7 +160,7 @@ function EditEventModal(props) {
               type="text"
               placeholder="Enter description"
               onChange={handleDescriptionChange}
-              value={props.editEventInfo.description}
+              value={description}
             />
           </Form.Group>
           {/* 
@@ -164,12 +179,12 @@ function EditEventModal(props) {
             <Form.Control
               type="text"
               placeholder="#000"
-              value={props.editEventInfo.color}
+              value={color}
             />
           </Form.Group>
 
           <GithubPicker
-            color={props.editEventInfo.color}
+            color={color}
             onChangeComplete={handleChangeColor}
           />
 

@@ -1,9 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/user.context";
 
 function Navbar() {
   const { loggedUser, logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout()
+    navigate("/login");
+
+  }
 
   return (
     <div className="nav-bar">
@@ -26,7 +33,7 @@ function Navbar() {
         </li>
         <li>
           {" "}
-          <button onClick={logout}>
+          <button onClick={handleLogout}>
             <img className="me-3" src="iconLogOut.svg" />
             Logout
           </button>
