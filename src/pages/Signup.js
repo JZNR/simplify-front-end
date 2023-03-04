@@ -11,6 +11,8 @@ import Button from "react-bootstrap/Button";
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const navigate = useNavigate();
 
   function handlePasswordChange(event) {
@@ -20,11 +22,17 @@ function Signup() {
   function handleEmailChange(event) {
     setEmail(event.target.value);
   }
+  function handleNameChange(event) {
+    setName(event.target.value);
+  }
+  function handleSurnameChange(event) {
+    setSurname(event.target.value);
+  }
 
   async function handleSubmitForm(event) {
     event.preventDefault();
     try {
-      await signup({ email, password });
+      await signup({ email, name, surname, password });
       toast.success("User Created");
       navigate("/");
     } catch (error) {
@@ -58,6 +66,27 @@ function Signup() {
                     type="text"
                     value={email}
                     onChange={handleEmailChange}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicName">
+                  <Form.Label htmlFor="name">Name </Form.Label>
+                  <Form.Control
+                    placeholder="Enter your name"
+                    id="name"
+                    type="text"
+                    value={name}
+                    onChange={handleNameChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicSurname">
+                  <Form.Label htmlFor="name">Surname </Form.Label>
+                  <Form.Control
+                    placeholder="Enter your surname"
+                    id="surname"
+                    type="text"
+                    value={surname}
+                    onChange={handleSurnameChange}
                   />
                 </Form.Group>
 
