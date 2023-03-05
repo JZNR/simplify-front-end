@@ -1,23 +1,32 @@
 import Button from "react-bootstrap/Button";
 import React, { useEffect } from "react";
-import { getEvents } from "../api";
+import { getUser, getEvents } from "../api";
 import { useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import { UserContext } from "../context/user.context";
 
 function Profile() {
   const [events, setEvents] = useState("");
+  const [ user , setUser] = useState(null);
   const { loggedUser } = useContext(UserContext);
+  const userId = loggedUser._id;
 
   async function getAllEvents() {
     const response = await getEvents();
     setEvents(response.data);
   }
+  
+  async function handleUser() {
+    const userResponse = await getUser(userId);
+    setUser(userResponse)
+  }
+  
   useEffect(() => {
     //api call to get events
-
+    handleUser();
     getAllEvents();
   }, [loggedUser]);
+
   return (
     <div className="profile-page">
       <Button variant="primary" className="edit-profile-button">
@@ -35,7 +44,7 @@ function Profile() {
         </div>
       </div>
       <h3>Upcoming events</h3>
-      <div className="profile-events">
+      {/* <div className="profile-events">
         {events.map((event) => {
           return (
             <Card>
@@ -49,8 +58,8 @@ function Profile() {
               </Card.Body>
             </Card>
           );
-        })}
-      </div>
+        })} */}
+      {/* </div> */}
     </div>
   );
 }

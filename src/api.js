@@ -63,3 +63,9 @@ export const verify = (token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const getUser = (userId) => {
+  return axios.get(`${BASE_URL}/user/edit`, userId,{
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
