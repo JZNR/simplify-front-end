@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { createEvent } from "../api";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getEvents } from "../api";
 import TimePicker from "react-time-picker";
 import { GithubPicker } from "react-color";
@@ -19,6 +19,22 @@ function AddEventModal(props) {
   const [endTime, setEndTime] = useState("11:00");
   const [color, setColor] = useState("#ff000");
 
+  useEffect(()=> {
+    if(props.eventDate.length > 10) {      
+      const preSetTime = props.eventDate.slice(11, 16);
+      const [start_hours, start_minutes] = preSetTime.split(":");
+      const total_start_minutes = parseInt(start_hours) * 60 + parseInt(start_minutes);
+      const total_end_minutes = total_start_minutes + 30;
+      const end_hours = Math.floor(total_end_minutes / 60);
+      const end_minutes = total_end_minutes % 60;
+      const end_time = `${end_hours.toString().padStart(2, "0")}:${end_minutes.toString().padStart(2, "0")}`;
+      console.log(end_time); // Output: "09:30"
+      const preSetDate = props.eventDate.slice(0, 10);
+      setDate(preSetDate)
+      setStartTime(preSetTime)
+      setEndTime(end_time)
+    }
+  })
   function handleTitleChange(event) {
     setTitle(event.target.value);
   }

@@ -49,7 +49,7 @@ function EditEventModal(props) {
     setStart(response.data.start.slice(11, 19))
     setEnd(response.data.end.slice(11, 19))
     setTitle(response.data.title);
-    setDate(props.eventDate);
+    setDate(response.data.date.slice(0, 10))
     setDescription(response.data.description);
     setAllDay(response.data.allDay);
     setColor(response.data.color);
