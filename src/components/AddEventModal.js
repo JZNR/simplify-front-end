@@ -16,7 +16,7 @@ function AddEventModal(props) {
   const [allDay, setAllDay] = useState(false);
   const [description, setDescription] = useState("");
   const [startTime, setStartTime] = useState("10:00");
-  const [endTime, setEndTime] = useState("12:00");
+  const [endTime, setEndTime] = useState("11:00");
   const [color, setColor] = useState("#ff000");
 
   function handleTitleChange(event) {

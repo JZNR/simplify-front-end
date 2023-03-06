@@ -10,60 +10,46 @@ import TimePicker from "react-time-picker";
 import { GithubPicker } from "react-color";
 
 function EditEventModal(props) {
-  // Regex for the current Time of the Event being Edited.
-
-  // const eventStartDate = props.editEventInfo.start;
-  // const eventEndDate = props.editEventInfo.end;
-  // const timeRegex = /T(\d{2}:\d{2}:\d{2})/;
-
-  // const startDateMatch = eventStartDate.match(timeRegex);
-  // const endDateMatch = eventEndDate.match(timeRegex);
-
-  // const currentStartTime = startDateMatch[1];
-  // const currentEndTime = endDateMatch[1];
-
   const navigate = useNavigate();
   const [title, setTitle] = useState(null);
   const [date, setDate] = useState(null);
   const [allDay, setAllDay] = useState(false);
-  const [description, setDescription] = useState(
-   null
-  );
+  const [description, setDescription] = useState(null);
+  const [start, setStart] = useState(null);
+  const [end, setEnd] = useState(null);
   const [color, setColor] = useState(null);
-
-  // const [startTime, setStartTime] = useState(currentStartTime);
-  // const [endTime, setEndTime] = useState(currentStartTime);
-
+  
   function handleTitleChange(event) {
     setTitle(event.target.value);
   }
-
+  
   function handleAllDayChange() {
     setAllDay(!allDay);
   }
-
+  
   function handleDescriptionChange(event) {
     setDescription(event.target.value);
   }
-
+  
   function handleChangeColor(color) {
     setColor(color.hex);
   }
+  
+  function handleStartTimeChange(time) {
+    setStart(time);
+  }
 
-  // function handleStartTimeChange(time) {
-  //   console.log(time)
-  //   setStartTime(time);
-  // }
-
-  // function handleEndTimeChange(time) {
-  //   console.log(time)
-  //   setEndTime(time);
-  // }
+  function handleEndTimeChange(time) {
+    setEnd(time);
+  }
 
   async function handleGetEvent(eventId) {
     const response = await getOneEvent(eventId);
+    console.log(response.data)
+    setStart(response.data.start.slice(11, 19))
+    setEnd(response.data.end.slice(11, 19))
     setTitle(response.data.title);
-    setDate(response.data.date);
+    setDate(props.eventDate);
     setDescription(response.data.description);
     setAllDay(response.data.allDay);
     setColor(response.data.color);
@@ -82,6 +68,8 @@ function EditEventModal(props) {
         title,
         date,
         allDay,
+        start,
+        end,
         description,
         eventID: props.eventId,
         color,
@@ -147,16 +135,16 @@ function EditEventModal(props) {
               value={description}
             />
           </Form.Group>
-          {/* 
+          
           <TimePicker 
           onChange={handleStartTimeChange} 
           disableClock={true}
-          value={startTime} />
+          value={start} />
 
           <TimePicker 
           onChange={handleEndTimeChange} 
           disableClock={true}
-          value={endTime} /> */}
+          value={end} />
 
           <Form.Group className="mb-3" controlId="formBasicDescription">
             <Form.Label>Color</Form.Label>
