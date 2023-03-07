@@ -14,6 +14,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Profile from "./pages/Profile";
 import IsPrivate from "./components/IsPrivate";
+import Notes from "./components/Notes/Notes";
 
 function App() {
   const { loggedUser } = useContext(UserContext);
@@ -48,6 +49,9 @@ function App() {
               <Route 
               path={"/profile"} 
               element={<IsPrivate> <Profile /> </IsPrivate>} />
+              <Route 
+              path={"/notes"} 
+              element={<IsPrivate> <Notes /> </IsPrivate>} />
             </Routes>
           </Col>
         </Row>

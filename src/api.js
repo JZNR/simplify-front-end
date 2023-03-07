@@ -46,6 +46,7 @@ export const deleteEvent = (eventID) => {
   return axios.post(`${BASE_URL}/event/delete`, {eventID});
 };
 
+
 export const uploadImage = (uploadData) => {
   return axios.post(`${BASE_URL}/upload`, uploadData);
 };
@@ -66,6 +67,27 @@ export const verify = (token) => {
 
 export const getUser = (userId) => {
   return axios.get(`${BASE_URL}/user/edit`, userId,{
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
+
+// Notes
+
+export const getNotes = () => {
+  return axios.get(`${BASE_URL}/notes`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
+
+export const createNote = (note) => {
+  console.log(localStorage.getItem("authToken"));
+  return axios.post(`${BASE_URL}/notes/create`, note, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
+
+export const deleteNote = (noteID) => {
+  return axios.post(`${BASE_URL}/notes/delete`, { noteID }, {
     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
   });
 };
