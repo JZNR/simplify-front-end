@@ -13,12 +13,20 @@ function Profile() {
 
   async function getAllEvents() {
     const response = await getEvents();
+    console.log(response.data)
     setEvents(response.data);
   }
   
   async function handleUser() {
     const userResponse = await getUser(userId);
     setUser(userResponse)
+  }
+
+  function handleDate(date) {
+    const newDate = new Date(`${date.slice(0, 10)}`);
+    const dayAndDate = newDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    const time = newDate.toLocaleTimeString('en-US', { timeZone: 'America/New_York' });
+    return(dayAndDate + ' at ' + time)
   }
   
   useEffect(() => {
@@ -44,22 +52,23 @@ function Profile() {
         </div>
       </div>
       <h3>Upcoming events</h3>
-      {/* <div className="profile-events">
-        {events.map((event) => {
+      <div className="profile-events">
+        {events && events.map((event) => {
           return (
-            <Card>
+            <Card key={event._id}>
               <Card.Body>
                 <Card.Title>{event.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   {event.startDate}
                 </Card.Subtitle>
                 <Card.Text>{event.description}</Card.Text>
+                <Card.Text>{handleDate(event.start)}</Card.Text>
                 <Card.Link href="#">Calendar</Card.Link>
               </Card.Body>
             </Card>
           );
-        })} */}
-      {/* </div> */}
+        })} 
+      </div>
     </div>
   );
 }
