@@ -64,3 +64,28 @@ export const getUser = (userId) => {
   console.log(userId);
   return axios.get(`${BASE_URL}/user/get`, { userId: userId });
 };
+
+// Notes
+
+export const getNotes = () => {
+  return axios.get(`${BASE_URL}/notes`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
+
+export const createNote = (note) => {
+  console.log(localStorage.getItem("authToken"));
+  return axios.post(`${BASE_URL}/notes/create`, note, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
+
+export const deleteNote = (noteID) => {
+  return axios.post(
+    `${BASE_URL}/notes/delete`,
+    { noteID },
+    {
+      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+    }
+  );
+};
