@@ -33,17 +33,13 @@ export const updateEvent = (eventTime, eventID) => {
 // For more detailed editing
 
 export const editEvent = (event) => {
-  return axios.post(
-    `${BASE_URL}/event/edit`,
-    event,
-    {
-      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
-    }
-  );
+  return axios.post(`${BASE_URL}/event/edit`, event, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
 };
 
 export const deleteEvent = (eventID) => {
-  return axios.post(`${BASE_URL}/event/delete`, {eventID});
+  return axios.post(`${BASE_URL}/event/delete`, { eventID });
 };
 
 export const uploadImage = (uploadData) => {
@@ -65,7 +61,6 @@ export const verify = (token) => {
 };
 
 export const getUser = (userId) => {
-  return axios.get(`${BASE_URL}/user/edit`, userId,{
-    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
-  });
+  console.log(userId);
+  return axios.get(`${BASE_URL}/user/get`, { userId: userId });
 };

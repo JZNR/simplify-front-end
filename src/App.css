@@ -169,6 +169,10 @@ input:-webkit-autofill {
 .fc .fc-button-primary:not(:disabled):active:focus {
   box-shadow: none !important;
 }
+.fc-direction-ltr .fc-daygrid-event.fc-event-end,
+.fc-direction-rtl .fc-daygrid-event.fc-event-start {
+  color: white !important;
+}
 /*navbar */
 
 .nav-bar {

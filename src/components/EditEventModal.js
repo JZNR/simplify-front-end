@@ -18,23 +18,23 @@ function EditEventModal(props) {
   const [start, setStart] = useState(null);
   const [end, setEnd] = useState(null);
   const [color, setColor] = useState(null);
-  
+
   function handleTitleChange(event) {
     setTitle(event.target.value);
   }
-  
+
   function handleAllDayChange() {
     setAllDay(!allDay);
   }
-  
+
   function handleDescriptionChange(event) {
     setDescription(event.target.value);
   }
-  
+
   function handleChangeColor(color) {
     setColor(color.hex);
   }
-  
+
   function handleStartTimeChange(time) {
     setStart(time);
   }
@@ -45,21 +45,21 @@ function EditEventModal(props) {
 
   async function handleGetEvent(eventId) {
     const response = await getOneEvent(eventId);
-    console.log(response.data)
-    setStart(response.data.start.slice(11, 19))
-    setEnd(response.data.end.slice(11, 19))
+    console.log(response.data);
+    setStart(response.data.start.slice(11, 19));
+    setEnd(response.data.end.slice(11, 19));
     setTitle(response.data.title);
-    setDate(response.data.date.slice(0, 10))
+    setDate(response.data.date.slice(0, 10));
     setDescription(response.data.description);
     setAllDay(response.data.allDay);
     setColor(response.data.color);
   }
 
- useEffect(() => {
-  if (props.eventId) {
-    handleGetEvent(props.eventId);
-  }
-}, [props.eventId])
+  useEffect(() => {
+    if (props.eventId) {
+      handleGetEvent(props.eventId);
+    }
+  }, [props.eventId]);
 
   async function handleSubmitForm(event) {
     event.preventDefault();
@@ -85,7 +85,9 @@ function EditEventModal(props) {
     }
   }
 
-  return !title ? <div>Loading...</div> :  (
+  return !title ? (
+    <div>Loading...</div>
+  ) : (
     <Modal
       {...props}
       size="lg"
@@ -135,30 +137,25 @@ function EditEventModal(props) {
               value={description}
             />
           </Form.Group>
-          
-          <TimePicker 
-          onChange={handleStartTimeChange} 
-          disableClock={true}
-          value={start} />
 
-          <TimePicker 
-          onChange={handleEndTimeChange} 
-          disableClock={true}
-          value={end} />
+          <TimePicker
+            onChange={handleStartTimeChange}
+            disableClock={true}
+            value={start}
+          />
+
+          <TimePicker
+            onChange={handleEndTimeChange}
+            disableClock={true}
+            value={end}
+          />
 
           <Form.Group className="mb-3" controlId="formBasicDescription">
             <Form.Label>Color</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="#000"
-              value={color}
-            />
+            <Form.Control type="text" placeholder="#000" value={color} />
           </Form.Group>
 
-          <GithubPicker
-            color={color}
-            onChangeComplete={handleChangeColor}
-          />
+          <GithubPicker color={color} onChangeComplete={handleChangeColor} />
 
           <Button variant="primary" type="submit">
             Submit
