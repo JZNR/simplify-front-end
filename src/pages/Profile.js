@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import { UserContext } from "../context/user.context";
 import EditProfileModal from "../components/EditProfileModal";
+import Spinner from "react-bootstrap/Spinner";
 
 function Profile() {
   const [events, setEvents] = useState("");
@@ -41,7 +42,11 @@ function Profile() {
     getAllEvents();
   }, [loggedUser]);
 
-  return (
+  return !user ? (
+    <div className="spinner">
+      <Spinner animation="border" variant="light" />
+    </div>
+  ) : (
     <>
       <div className="profile-page">
         <Button

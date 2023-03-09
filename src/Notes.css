@@ -22,17 +22,6 @@
   color: #fff;
 }
 
-.note__save {
-  background: transparent;
-  transition: 0.1s ease-in-out;
-  border: 1.5px solid #fff;
-  border-radius: 10px;
-  color: #fff;
-  padding: 4px 10px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
 .note__save:hover {
   background: #fff;
   border: 1.5px solid #fff;
