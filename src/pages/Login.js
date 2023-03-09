@@ -38,7 +38,7 @@ function Login() {
       toast.success("Logged in");
       navigate("/calendar");
     } catch (error) {
-      toast.error("Whatever occured here", error);
+      toast.error("Error occured", error);
     }
   }
 
