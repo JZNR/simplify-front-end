@@ -7,9 +7,8 @@ function Navbar() {
   const navigate = useNavigate();
 
   function handleLogout() {
-    logout()
+    logout();
     navigate("/login");
-
   }
 
   return (
@@ -17,19 +16,34 @@ function Navbar() {
       <ul>
         <img src="logo.svg" className="logo" />
         <li>
-          <img src="calendarIcon.svg" className="icon-nav-bar" />{" "}
-          <NavLink to="/calendar">Calendar</NavLink>
+          <NavLink
+            className="link"
+            activeClassName="active"
+            to="/calendar"
+            style={{ display: "flex" }}
+          >
+            <img src="calendarIcon.svg" className="icon-nav-bar" /> Calendar
+          </NavLink>
         </li>
         <li>
-          <img src="notesIcon.svg" className="icon-nav-bar" />{" "}
-          <NavLink to="/notes">Notes</NavLink>
+          <NavLink
+            className="link"
+            to="/notes"
+            style={{ display: "flex" }}
+            activeClassName="active"
+          >
+            {" "}
+            <img src="notesIcon.svg" className="icon-nav-bar" /> Notes
+          </NavLink>
         </li>
         <div className="line"></div>
         <li className="my-profile">
           <div className="picture-my-profile">
             <img src="person.png" />
           </div>
-          <NavLink to="/profile">My Profile</NavLink>
+          <NavLink activeClassName="active" to="/profile">
+            My Profile
+          </NavLink>
         </li>
         <li>
           {" "}

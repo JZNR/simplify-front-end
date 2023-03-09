@@ -42,34 +42,34 @@ function Profile() {
     getAllEvents();
   }, [loggedUser]);
 
-  return !user ? (
+  return !user && !events ? (
     <div className="spinner">
       <Spinner animation="border" variant="light" />
     </div>
   ) : (
     <>
       <div className="profile-page">
-        <Button
+        {/*<Button
           variant="primary"
           className="edit-profile-button"
           onClick={handleModalShow}
         >
           Edit Profile
-        </Button>
+        </Button>*/}
         <div>
           <div className="name-and-picture mb-5">
-            <div className="profile-image">
+            {/*<div className="profile-image">
               <img src="person.png" />{" "}
-            </div>{" "}
+            </div>{" "}*/}
             <div>
-              <h3>
+              <h2>
                 {user.firstName} {user.surname}
-              </h3>
-              <h5>{user.email} </h5>
+              </h2>
+              <h4>{user.email} </h4>
             </div>
           </div>
         </div>
-        <h3>Upcoming events</h3>
+        <h4>Upcoming events</h4>
         <div className="profile-events">
           {events &&
             events.map((event) => {
@@ -82,7 +82,7 @@ function Profile() {
                     </Card.Subtitle>
                     <Card.Text>{event.description}</Card.Text>
                     <Card.Text>{handleDate(event.start)}</Card.Text>
-                    <Card.Link href="#">See calendar</Card.Link>
+                    {/*<Card.Link href="#">See calendar</Card.Link>*/}
                   </Card.Body>
                 </Card>
               );

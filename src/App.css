@@ -27,6 +27,12 @@ h3 {
   --bs-spinner-width: 5rem;
   --bs-spinner-height: 5rem;
 }
+.active {
+  filter: invert(80%) sepia(89%) saturate(2276%) hue-rotate(230deg)
+    brightness(93%) contrast(83%);
+  font-weight: 700 !important;
+}
+
 /*login styles*/
 
 .login-page {
@@ -199,8 +205,8 @@ input:-webkit-autofill {
   align-items: inherit !important;
 }
 .picture-my-profile {
-  max-width: 24px;
   max-height: 24px;
+  max-width: 24px;
   border-radius: 2px;
   margin-right: 9%;
 }
@@ -223,9 +229,10 @@ input:-webkit-autofill {
   display: flex;
   align-items: center;
 }
-.nav-bar a:hover {
-  color: #3f3fc0 !important;
-}
+/*.nav-bar a:hover {
+  filter: invert(41%) sepia(12%) saturate(836%) hue-rotate(201deg)
+    brightness(105%) contrast(59%) !important;
+}*/
 .nav-bar a {
   text-decoration: none;
   font-family: "Poppins", sans-serif;
@@ -361,6 +368,8 @@ input:-webkit-autofill {
 .profile-page {
   padding: 3.5%;
   color: white;
+  max-height: 100vh;
+  overflow: scroll;
 }
 .profile-page .name-and-picture {
   display: flex;
@@ -395,11 +404,16 @@ input:-webkit-autofill {
 }
 
 .profile-events {
+  margin-top: 2rem;
   display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .profile-events .card {
   background-color: transparent;
+  border: white 2px solid;
+  min-width: 30%;
 }
 
 /*notes*/

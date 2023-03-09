@@ -5,6 +5,7 @@ import AddEventModal from ".././components/AddEventModal";
 import { getEvents, deleteEvent, updateEvent, getOneEvent } from "../api";
 import EditEventModal from ".././components/EditEventModal";
 import { UserContext } from "../context/user.context";
+import Spinner from "react-bootstrap/Spinner";
 
 function CalendarPage() {
   const [modalShow, setModalShow] = useState(false);
@@ -12,11 +13,11 @@ function CalendarPage() {
   const [eventDate, setEventDate] = useState();
   const [events, setEvents] = useState("");
   const { loggedUser } = useContext(UserContext);
-  const [eventId, setEventId] = useState(null)
+  const [eventId, setEventId] = useState(null);
 
   async function getAllEvents() {
     const response = await getEvents();
-    console.log("response events", response)
+    console.log("response events", response);
     setEvents(response.data);
   }
 
@@ -27,10 +28,10 @@ function CalendarPage() {
 
   async function editEvent(e) {
     setModalEditShow(true);
-    setEventId(e.event._def.extendedProps._id); 
+    setEventId(e.event._def.extendedProps._id);
   }
 
-  function handleDeleteEvent() {;
+  function handleDeleteEvent() {
     console.log("delete event id", eventId);
     deleteEvent(eventId);
     setModalEditShow(false);
@@ -50,7 +51,11 @@ function CalendarPage() {
     updateEvent(updatedEventTime, updatedEventId);
   }
 
-  return (
+  return !events ? (
+    <div className="spinner">
+      <Spinner animation="border" variant="light" />
+    </div>
+  ) : (
     <div className="calendar-page">
       <CustomCalendar
         handleDateClick={handleDateClick}

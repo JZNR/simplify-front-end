@@ -11,10 +11,10 @@ import { GithubPicker } from "react-color";
 
 function EditProfileModal(props) {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [firstName, setFirstName] = useState(props.user.firstName);
+  const [lastName, setLastName] = useState(props.user.surname);
+  const [email, setEmail] = useState(props.user.email);
+  const [password, setPassword] = useState(props.user.password);
 
   function handleFirstNameChange(event) {
     setFirstName(event.target.value);
@@ -82,7 +82,7 @@ function EditProfileModal(props) {
               type="text"
               placeholder="First Name"
               onChange={handleFirstNameChange}
-              value={props.user.firstName}
+              value={firstName}
             />
           </Form.Group>
 
@@ -92,7 +92,7 @@ function EditProfileModal(props) {
               type="text"
               placeholder="Last Name"
               onChange={handleLastNameChange}
-              value={props.user.surname}
+              value={lastName}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmailEdit">
@@ -101,15 +101,16 @@ function EditProfileModal(props) {
               type="text"
               placeholder="Email"
               onChange={handleEmailChange}
-              value={props.user.email}
+              value={email}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPaswordEdit">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Pasword"
+              placeholder="Password"
               onChange={handlePasswordChange}
+              value="*********"
             />
           </Form.Group>
 
