@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/user.context";
-
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 function Navbar() {
   const { loggedUser, logout } = useContext(UserContext);
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ function Navbar() {
         <div className="line"></div>
         <li className="my-profile">
           <div className="picture-my-profile">
-            <img src="person.png" />
+            <AccountCircleOutlinedIcon style={{ color: "white" }} />
           </div>
           <NavLink activeClassName="active" to="/profile">
             My Profile

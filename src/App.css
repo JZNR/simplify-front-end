@@ -208,7 +208,7 @@ input:-webkit-autofill {
   max-height: 24px;
   max-width: 24px;
   border-radius: 2px;
-  margin-right: 9%;
+  margin-right: 4%;
 }
 
 .picture-my-profile img {
@@ -424,25 +424,28 @@ input:-webkit-autofill {
   scroll-behavior: auto;
   color: white;
   overflow: scroll;
+  display: flex;
 }
 
 .notes {
-  margin: 0 auto;
-  display: grid;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /*display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, minmax(300px, 1fr));*/
 }
 
 .note {
-  margin-right: auto;
-  margin-left: auto;
-  width: 250px;
+  max-width: 46%;
+  min-width: 46%;
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.07);
   height: 300px;
   border-radius: 5px;
   backdrop-filter: blur(14px);
   background-color: rgba(255, 255, 255, 0.04);
-  padding: 10px;
+  margin: 2%;
   border-radius: 15px;
   border: 1.5px solid rgba(255, 255, 255, 0.326);
   color: #fff;
@@ -452,7 +455,6 @@ input:-webkit-autofill {
   flex-direction: column;
   justify-content: space-between;
   word-wrap: break-word;
-  min-width: 100% !important;
 }
 
 .note textarea {
@@ -516,4 +518,8 @@ input:-webkit-autofill {
 
 .char__progress {
   background-color: #fff !important;
+}
+
+.pinned-note {
+  background-color: red !important;
 }

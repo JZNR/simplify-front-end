@@ -9,7 +9,7 @@ import Spinner from "react-bootstrap/Spinner";
 function Notes() {
   const { loggedUser } = useContext(UserContext);
   const [notes, setNotes] = useState("");
-  const [pinned, setPinned] = useState(false)
+  const [pinned, setPinned] = useState(false);
 
   async function getAllNotes() {
     const response = await getNotes();
@@ -39,29 +39,28 @@ function Notes() {
     getAllNotes();
   }
 
-  
   async function handlePinNote(noteID) {
     try {
-        setPinned(!pinned)
-        await editNote({
-            noteID: noteID,
-            pinned
-          });
-          getAllNotes()
+      setPinned(!pinned);
+      await editNote({
+        noteID: noteID,
+        pinned,
+      });
+      getAllNotes();
     } catch (error) {
-        console.error("Error occured", error);
+      console.error("Error occured", error);
     }
   }
 
   async function handleUnPinNote(noteID) {
     try {
-        await editNote({
-            noteID: noteID,
-            pinned
-          });
-         getAllNotes();
+      await editNote({
+        noteID: noteID,
+        pinned,
+      });
+      getAllNotes();
     } catch (error) {
-        console.error("Error occured", error);
+      console.error("Error occured", error);
     }
   }
 
@@ -75,28 +74,35 @@ function Notes() {
         {notes &&
           notes.map((note) => (
             <>
-            <div>
-               
-                {note.pinned === true && 
+              {note.pinned === true && (
                 <>
-                <Note
-                key={note._id} 
-                id={note._id}
-                description={note.description}
-                deleteNote={handleDeleteNote}
-                handlePinNote={handleUnPinNote}
-                />
+                  <Note
+                    pinned={pinned}
+                    color="#3f3fc0"
+                    key={note._id}
+                    id={note._id}
+                    description={note.description}
+                    deleteNote={handleDeleteNote}
+                    handlePinNote={handleUnPinNote}
+                  />
                 </>
-                }
-            </div>
-            
-            {!note.pinned && <Note style={{color:"red"}}
-              key={note._id}
-              id={note._id}
-              description={note.description}
-              deleteNote={handleDeleteNote}
-              handlePinNote={handlePinNote}
-            />}
+              )}
+            </>
+          ))}
+
+        {notes &&
+          notes.map((note) => (
+            <>
+              {!note.pinned && (
+                <Note
+                  style={{ color: "red" }}
+                  key={note._id}
+                  id={note._id}
+                  description={note.description}
+                  deleteNote={handleDeleteNote}
+                  handlePinNote={handlePinNote}
+                />
+              )}
             </>
           ))}
         <CreateNote notes={notes} setNotes={setNotes} />
