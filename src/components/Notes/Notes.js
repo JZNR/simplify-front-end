@@ -4,6 +4,7 @@ import CreateNote from "./CreateNote";
 import Note from "./Note";
 import { deleteNote, getNotes } from "../../api";
 import { UserContext } from "../../context/user.context";
+import Spinner from "react-bootstrap/Spinner";
 
 function Notes() {
   const { loggedUser } = useContext(UserContext);
@@ -37,7 +38,11 @@ function Notes() {
     getAllNotes();
   }
 
-  return (
+  return !notes ? (
+    <div className="spinner">
+      <Spinner animation="border" variant="light" />
+    </div>
+  ) : (
     <div className="notes-page">
       <div className="notes">
         {notes &&

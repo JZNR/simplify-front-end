@@ -1,13 +1,15 @@
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+
 function Note(props) {
   return (
     <div className="note">
       <div className="note__body">{props.description}</div>
       <div className="note__footer" style={{ justifyContent: "flex-end" }}>
-        <button
+        <DeleteForeverOutlinedIcon
           className="note__delete"
           onClick={() => props.deleteNote(props.id)}
           aria-hidden="true"
-        ></button>
+        ></DeleteForeverOutlinedIcon>
       </div>
     </div>
   );

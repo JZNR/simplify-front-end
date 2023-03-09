@@ -11,7 +11,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 function CreateNote(props) {
   const [characters, setCharacters] = useState("");
 
-  const charLimit = 100;
+  const charLimit = 200;
   const charLeft = charLimit - characters.length;
 
   function handleCharactersChange(event) {
@@ -20,16 +20,17 @@ function CreateNote(props) {
 
   async function handleSubmitForm(event) {
     event.preventDefault();
+
     try {
       await createNote({
         title: characters,
         description: characters,
       });
+      setCharacters("");
       toast.success("Note created ");
 
       const response = await getNotes();
       props.setNotes(response.data);
-      setCharacters("");
     } catch (error) {
       toast.error("Error occured", error);
     }
@@ -40,13 +41,14 @@ function CreateNote(props) {
       <Form onSubmit={handleSubmitForm}>
         <textarea
           cols="10"
-          rows="5"
+          rows="3"
           placeholder="Type note...."
           onChange={handleCharactersChange}
-          maxLength="100"
+          maxLength="200"
+          value={characters}
         ></textarea>
         <div className="note__footer">
-          {/* <span className="label">{charLeft} left</span> */}
+          <span className="label">{charLeft} left</span>
           {/* <button className="note__save" onClick={saveHandler}>
               Save
             </button> */}
@@ -56,7 +58,7 @@ function CreateNote(props) {
           variant="determinate"
           value={charLeft}
         />
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="create-note-button">
           Create
         </Button>
       </Form>
