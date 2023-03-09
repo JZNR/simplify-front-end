@@ -1,4 +1,5 @@
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import PushPinIcon from '@mui/icons-material/PushPin';
 
 function Note(props) {
   return (
@@ -10,6 +11,11 @@ function Note(props) {
           onClick={() => props.deleteNote(props.id)}
           aria-hidden="true"
         ></DeleteForeverOutlinedIcon>
+        <PushPinIcon
+          className="note__delete"
+          onClick={() => props.handlePinNote(props.id)}
+          aria-hidden="true"
+        ></PushPinIcon>
       </div>
     </div>
   );

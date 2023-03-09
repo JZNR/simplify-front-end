@@ -89,3 +89,9 @@ export const deleteNote = (noteID) => {
     }
   );
 };
+
+export const editNote = (noteId) => {
+  return axios.post(`${BASE_URL}/notes/edit`, noteId, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  });
+};
